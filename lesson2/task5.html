@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task5</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1 class="main-title">Задача 5</h1>
+		<nav class="breadcrumbs">
+			<ul class="breadcrumbs__list">
+				<li class="breadcrumbs__item">
+					<a class="breadcrumbs__link" href="../index.html">
+						Головна
+					</a>
+				</li>
+				<li class="breadcrumbs__item">
+					<a href="./index.html" class="breadcrumbs__link">
+						ДЗ №2
+					</a>
+				</li>
+				<li class="breadcrumbs__item">
+					<span class="breadcrumbs__link breadcrumbs__link_active">
+						Task5
+					</span>
+				</li>
+			</ul>
+		</nav>
+		<div class="condition">
+			<p class="condition__text">
+				Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.
+			</p>
+		</div>
+		<div class="script">
+			<script>
+				//1.Вводимо необхідні дані
+				let secondNum = parseInt(prompt('Кількість секунд'))
+				//2.Знаходимо результат
+				let hourNum = Math.floor(secondNum / 3600)
+				let minuteNum = Math.floor((secondNum % 3600) / 60)
+				//3.Виводимо результат
+				document.write(`${hourNum} Годин : ${minuteNum} Хвилин`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

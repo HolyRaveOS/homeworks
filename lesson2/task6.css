@@ -1,0 +1,31 @@
+.check {
+	width: 300px;
+	margin: 0 auto;
+	border: 1px solid #000;
+	border-radius: 10px;
+}
+
+.check-title {
+	padding: 10px;
+	text-align: center;
+	border-bottom: 1px solid #000;
+	font-weight: 700;
+}
+
+.check-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: 1px solid #000;
+	font-size: 16px;
+}
+
+.check-item:last-child {
+	border-bottom: none;
+}
+
+.check-total {
+	padding: 10px;
+	text-align: center;
+	font-weight: 700;
+}

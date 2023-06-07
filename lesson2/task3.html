@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1 class="main-title">Задача 3</h1>
+		<nav class="breadcrumbs">
+			<ul class="breadcrumbs__list">
+				<li class="breadcrumbs__item">
+					<a class="breadcrumbs__link" href="../index.html">
+						Головна
+					</a>
+				</li>
+				<li class="breadcrumbs__item">
+					<a href="./index.html" class="breadcrumbs__link">
+						ДЗ №2
+					</a>
+				</li>
+				<li class="breadcrumbs__item">
+					<span class="breadcrumbs__link breadcrumbs__link_active">
+						Task3
+					</span>
+				</li>
+			</ul>
+		</nav>
+		<div class="condition">
+			<p class="condition__text">Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5% від
+				загальної вартості).</p>
+		</div>
+		<div class="script">
+			<script>
+				//1.Вводимо необхідні дані
+				let productPrice = parseFloat(prompt('Вартість товару'))
+				let ProductSum = parseInt(prompt('Кількість товару товару'))
+				let pdvNum = 5
+				//2.Знаходимо результат
+				let grossSum = ProductSum * productPrice
+				let pdv = (grossSum * pdvNum) / 100
+				let netSum = grossSum - pdv
+				//3.Виводимо результат
+				document.write(`Брутто сума = ${grossSum.toFixed(3)}<br> Нетто сума = ${netSum.toFixed(3)}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

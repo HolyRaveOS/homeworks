@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task0</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1 class="main-title">Задача 0</h1>
+		<nav class="breadcrumbs">
+			<ul class="breadcrumbs__list">
+				<li class="breadcrumbs__item">
+					<a class="breadcrumbs__link" href="../index.html">
+						Головна
+					</a>
+				</li>
+				<li class="breadcrumbs__item">
+					<a href="./index.html" class="breadcrumbs__link">
+						ДЗ №2
+					</a>
+				</li>
+				<li class="breadcrumbs__item">
+					<span class="breadcrumbs__link breadcrumbs__link_active">
+						Task0
+					</span>
+				</li>
+			</ul>
+		</nav>
+		<div class="condition">
+			<p class="condition__text">Обчислити значення виразів</p>
+			<img src="1.png" alt="Задача">
+		</div>
+		<div class="script">
+			<script>
+				//1.Вводимо необхідні дані
+				let a = 5
+				let b = 3
+				let c = 27
+				//2.Знаходимо результат
+				let s1 = a + 12 + b
+				let s2 = Math.sqrt(a + b) / Math.sqrt(2 * a)
+				let s3 = Math.cbrt((a + b) * c)
+				let s4 = Math.sin(a / -b)
+				//3.Виводимо результат
+				document.write(`s1 = ${s1}<br>
+			s2 = ${s2}<br>
+			s3 = ${s3}<br>
+			s4 = ${s4}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
