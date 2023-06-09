@@ -94,6 +94,9 @@ h6 {
 	margin-bottom: 50px;
 }
 
+.lessons :not(:last-child) {
+	margin-bottom: 20px;
+}
 
 .lessons__link {
 	padding: 20px;

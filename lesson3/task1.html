@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 1</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №3
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task1
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+				//1.Вводимо необхідні дані
+				let child1Name = prompt('Імя першої дитини')
+				let possessionOfCandyChild1 = parseInt(prompt('Кільцість цукерок якою володіє перша дитина'))
+				let child2Name = prompt('Імя другої дитини')
+				let possessionOfCandyChild2 = parseInt(prompt('Кільцість цукерок якою володіє друга дитина'))
+				//2.Знаходимо результат
+				if (possessionOfCandyChild1 > possessionOfCandyChild2)
+					alert(child1Name)
+				else
+					if (possessionOfCandyChild1 < possessionOfCandyChild2)
+						alert(child2Name)
+					else
+						alert('Кількість цукерків одинакова')
+				//3.Виводимо результат
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
