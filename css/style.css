@@ -31,7 +31,9 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 24px;
+	font-size: 22px;
+
+
 }
 
 input,
@@ -72,9 +74,17 @@ h6 {
 }
 
 .wrapper {
+	background-image: url('/bg.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	min-height: 100%;
+}
+
+.container {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 20px 15px 0 15px;
+	padding: 30px 15px;
 }
 
 .main-title {
@@ -85,28 +95,57 @@ h6 {
 }
 
 
-.link {
+.lessons__link {
 	padding: 20px;
 	display: inline-block;
 	width: 100%;
-	border: 1px solid #000;
+	border: 2px solid #000;
 	border-radius: 10px;
 	font-weight: 600;
+	transition: transform 0.3s;
 }
 
-.tasks :not(:last-child) {
-	margin-bottom: 20px;
+.lessons__link:hover {
+	transform: scale(1.02);
 }
 
-.condition {
+.tasks {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	gap: 50px;
+}
+
+.tasks__item {
+	max-width: 300px;
+	width: 100%;
 	text-align: center;
+	border: 2px solid #000;
+	border-radius: 10px;
+	transition: transform 0.3s;
+}
+
+.tasks__item:hover {
+	transform: scale(1.05);
+}
+
+.tasks__link {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	height: 100%;
+	padding: 15px;
+	font-weight: 500;
+	text-shadow: 0px 0px 1px #000;
+}
+
+.tasks__link span {
+	font-size: 30px;
+	font-weight: 700;
+	flex-grow: 1;
 }
 
 .condition img {
-	margin-bottom: 20px;
-}
-
-.condition__text {
 	margin-bottom: 20px;
 }
 
@@ -121,6 +160,7 @@ h6 {
 	gap: 30px;
 	align-items: center;
 	position: relative;
+	font-size: 26px;
 }
 
 .breadcrumbs__list :not(:last-child) ::after {
@@ -134,6 +174,14 @@ h6 {
 	position: absolute;
 	bottom: 5px;
 	margin-left: 5px;
+}
+
+.breadcrumbs__link {
+	transition: color 0.3s;
+}
+
+.breadcrumbs__link:hover {
+	color: red;
 }
 
 .breadcrumbs__link_active {

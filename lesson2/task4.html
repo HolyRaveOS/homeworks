@@ -11,41 +11,38 @@
 
 <body>
 	<div class="wrapper">
-		<h1 class="main-title">Задача 4</h1>
-		<nav class="breadcrumbs">
-			<ul class="breadcrumbs__list">
-				<li class="breadcrumbs__item">
-					<a class="breadcrumbs__link" href="../index.html">
-						Головна
-					</a>
-				</li>
-				<li class="breadcrumbs__item">
-					<a href="./index.html" class="breadcrumbs__link">
-						ДЗ №2
-					</a>
-				</li>
-				<li class="breadcrumbs__item">
-					<span class="breadcrumbs__link breadcrumbs__link_active">
-						Task4
-					</span>
-				</li>
-			</ul>
-		</nav>
-		<div class="condition">
-			<p class="condition__text">
-				Дано довжину у сантиметрах. Визначати скільки це метрів і кілометрів.
-			</p>
-		</div>
-		<div class="script">
-			<script>
-				//1.Вводимо необхідні дані
-				let centimeterNum = parseFloat(prompt('Кількість сантиметрів'))
-				//2.Знаходимо результат
-				let meterNum = centimeterNum / 1000
-				let kilometerNum = meterNum / 1000
-				//3.Виводимо результат
-				document.write(`Кількість метрів = ${meterNum}<br> Кількість кілометрів = ${kilometerNum}`)
-			</script>
+		<div class="container">
+			<h1 class="main-title">Задача 4</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №2
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task4
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<div class="script">
+				<script>
+					//1.Вводимо необхідні дані
+					let centimeterNum = parseFloat(prompt('Кількість сантиметрів'))
+					//2.Знаходимо результат
+					let meterNum = centimeterNum / 1000
+					let kilometerNum = meterNum / 1000
+					//3.Виводимо результат
+					document.write(`Кількість метрів = ${meterNum}<br> Кількість кілометрів = ${kilometerNum}`)
+				</script>
+			</div>
 		</div>
 	</div>
 </body>

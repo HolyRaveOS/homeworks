@@ -11,40 +11,37 @@
 
 <body>
 	<div class="wrapper">
-		<h1 class="main-title">Задача 1</h1>
-		<nav class="breadcrumbs">
-			<ul class="breadcrumbs__list">
-				<li class="breadcrumbs__item">
-					<a class="breadcrumbs__link" href="../index.html">
-						Головна
-					</a>
-				</li>
-				<li class="breadcrumbs__item">
-					<a href="./index.html" class="breadcrumbs__link">
-						ДЗ №2
-					</a>
-				</li>
-				<li class="breadcrumbs__item">
-					<span class="breadcrumbs__link breadcrumbs__link_active">
-						Task1
-					</span>
-				</li>
-			</ul>
-		</nav>
-		<div class="condition">
-			<p class="condition__text">Знайти суму, добуток та частку двох дійсних чисел. Результат вивести у формі таблиці
-			</p>
-		</div>
-		<script>
-			//1.Вводимо необхідні дані
-			let a = 3.80
-			let b = 2.35
-			//2.Знаходимо результат
-			let sum = a + b
-			let product = a * b
-			let fraction = a / b
-			//3.Виводимо результат
-			document.write(`
+		<div class="container">
+			<h1 class="main-title">Задача 1</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №2
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task1
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+				//1.Вводимо необхідні дані
+				let a = 3.80
+				let b = 2.35
+				//2.Знаходимо результат
+				let sum = a + b
+				let product = a * b
+				let fraction = a / b
+				//3.Виводимо результат
+				document.write(`
 <style>
 	table {
 		border-collapse: collapse;
@@ -73,7 +70,8 @@
 					<td>${fraction}</td>
 				</tr>
 				</table>`)
-		</script>
+			</script>
+		</div>
 	</div>
 </body>
 

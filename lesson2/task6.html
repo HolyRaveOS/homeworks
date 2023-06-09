@@ -12,48 +12,43 @@
 
 <body>
 	<div class="wrapper">
-		<h1 class="main-title">Задача 6</h1>
-		<nav class="breadcrumbs">
-			<ul class="breadcrumbs__list">
-				<li class="breadcrumbs__item">
-					<a class="breadcrumbs__link" href="../index.html">
-						Головна
-					</a>
-				</li>
-				<li class="breadcrumbs__item">
-					<a href="./index.html" class="breadcrumbs__link">
-						ДЗ №2
-					</a>
-				</li>
-				<li class="breadcrumbs__item">
-					<span class="breadcrumbs__link breadcrumbs__link_active">
-						Task6
-					</span>
-				</li>
-			</ul>
-		</nav>
-		<div class="condition">
-			<p class="condition__text">
-				З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару
-				окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
-			</p>
-		</div>
-		<div class="script">
-			<script>
-				//1.Вводимо необхідні дані
-				let goods1Num = parseInt(prompt('Кількість товару №1'))
-				let goods1Price = parseFloat(prompt('Ціна товару №1'))
-				let goods2Num = parseInt(prompt('Кількість товару №2'))
-				let goods2Price = parseFloat(prompt('Ціна товару №2'))
-				let goods3Num = parseInt(prompt('Кількість товару №3'))
-				let goods3Price = parseFloat(prompt('Ціна товару №3'))
-				//2.Знаходимо результат
-				let goods1TotalPrice = goods1Num * goods1Price
-				let goods2TotalPrice = goods2Num * goods2Price
-				let goods3TotalPrice = goods3Num * goods3Price
-				let TotalPrice = goods1TotalPrice + goods2TotalPrice + goods3TotalPrice
-				//3.Виводимо результат
-				document.write(`
+		<div class="container">
+			<h1 class="main-title">Задача 6</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №2
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task6
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<div class="script">
+				<script>
+					//1.Вводимо необхідні дані
+					let goods1Num = parseInt(prompt('Кількість товару №1'))
+					let goods1Price = parseFloat(prompt('Ціна товару №1'))
+					let goods2Num = parseInt(prompt('Кількість товару №2'))
+					let goods2Price = parseFloat(prompt('Ціна товару №2'))
+					let goods3Num = parseInt(prompt('Кількість товару №3'))
+					let goods3Price = parseFloat(prompt('Ціна товару №3'))
+					//2.Знаходимо результат
+					let goods1TotalPrice = goods1Num * goods1Price
+					let goods2TotalPrice = goods2Num * goods2Price
+					let goods3TotalPrice = goods3Num * goods3Price
+					let TotalPrice = goods1TotalPrice + goods2TotalPrice + goods3TotalPrice
+					//3.Виводимо результат
+					document.write(`
 <div class="check">
       <h2 class="check-title">Чек</h2>
    <div class="check-item">
@@ -76,7 +71,8 @@
       <span>Дякуємо за покупку!</span>
    </div>
 </div>`);
-			</script>
+				</script>
+			</div>
 		</div>
 	</div>
 </body>
