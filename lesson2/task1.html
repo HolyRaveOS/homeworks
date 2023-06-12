@@ -32,27 +32,29 @@
 					</li>
 				</ul>
 			</nav>
+			<style>
+				table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				th,
+				td {
+					padding: 10px;
+					text-align: left;
+					border: 2px solid #000000;
+				}
+			</style>
 			<script>
 				//1.Вводимо необхідні дані
-				let a = 3.80
-				let b = 2.35
+				let a = parseFloat(prompt('Введіть дійсне число для а'))
+				let b = parseFloat(prompt('Введіть дійсне число для b'))
 				//2.Знаходимо результат
 				let sum = a + b
 				let product = a * b
 				let fraction = a / b
 				//3.Виводимо результат
 				document.write(`
-<style>
-	table {
-		border-collapse: collapse;
-		width: 100%;
-	}
-	th, td {
-		padding: 10px;
-		text-align: left;
-		border: 2px solid #000000;
-	}
-</style>
 			<table>
 				<tr>
 					<th>Перше число</th>
@@ -63,11 +65,11 @@
 				</tr>
 
 				<tr>
-					<td>${a}</td>
-					<td>${b}</td>
-					<td>${sum}</td>
-					<td>${product}</td>
-					<td>${fraction}</td>
+					<td>${a.toFixed(3)}</td>
+					<td>${b.toFixed(3)}</td>
+					<td>${sum.toFixed(3)}</td>
+					<td>${product.toFixed(3)}</td>
+					<td>${fraction.toFixed(3)}</td>
 				</tr>
 				</table>`)
 			</script>

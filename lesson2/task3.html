@@ -36,12 +36,12 @@
 				<script>
 					//1.Вводимо необхідні дані
 					let productPrice = parseFloat(prompt('Вартість товару'))
-					let ProductSum = parseInt(prompt('Кількість товару товару'))
-					let pdvNum = 5
+					let productNum = parseInt(prompt('Кількість товару товару'))
+					const VAT_SUM = 5
 					//2.Знаходимо результат
-					let grossSum = ProductSum * productPrice
-					let pdv = (grossSum * pdvNum) / 100
-					let netSum = grossSum - pdv
+					let grossSum = productNum * productPrice
+					let VAT = (grossSum * VAT_SUM) / 100
+					let netSum = grossSum - VAT
 					//3.Виводимо результат
 					document.write(`Брутто сума = ${grossSum.toFixed(3)}<br> Нетто сума = ${netSum.toFixed(3)}`)
 				</script>
