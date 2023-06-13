@@ -39,13 +39,15 @@
 				//2.Знаходимо результат
 				if (firstTry === randomNumber)
 					alert('Ви вгадали номер')
-				else
+				else {
 					alert('Спробуйте ще')
-				let secondTry = parseInt(prompt('Вкажіть номер від 1 до 5'))
-				if (secondTry === randomNumber)
-					alert('Ви вгадали номер')
-				else
-					alert('Наступного разу пощастить')
+					firstTry = parseInt(prompt('Вкажіть номер від 1 до 5'))
+					if (firstTry === randomNumber)
+						alert('Ви вгадали номер')
+					else
+						alert('Наступного разу пощастить')
+				}
+
 				// //3.Виводимо результат
 			</script>
 		</div>
