@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task13</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./lesson5.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 13</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №5
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task13
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+				const verticalN = parseInt(prompt('Введіть клітинок по вертикалі'))
+				const horozontalM = parseInt(prompt('ведіть клітинок по горизонталі'))
+				let shotNum = parseInt(prompt('Введіть кількість снарядів'))
+				let shotTry
+				const shipPosition = Math.floor(Math.random() * (verticalN * horozontalM)) + 1
+				document.write('<table border="2px">')
+				for (let i = 1; i <= verticalN; i++) {
+					document.write('<tr>')
+					for (let j = 1; j <= horozontalM; j++) {
+						document.write(`<td> ? </td>`)
+					}
+					document.write('</tr>')
+				}
+				document.write('</table>')
+
+				while (shotTry !== shipPosition && shotNum > 0) {
+					shotTry = parseInt(prompt('Вкажіть номер клітинки по якій подемо стріляти'))
+					shotNum--
+				}
+
+				if (shotTry === shipPosition) {
+					alert('Вітаємо ви потопили корабель')
+				}
+				else {
+					alert('Ваші спроби закінчились')
+				}
+				if (shotTry !== shipPosition) alert(`Корабель знаходився на позиції ${shipPosition}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

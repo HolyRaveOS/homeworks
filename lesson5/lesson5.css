@@ -1,0 +1,44 @@
+.task0btn {
+  background-color: #3f5c9e;
+  padding: 10px 30px;
+  border-radius: 10px;
+  color: #fff;
+}
+.task0btn:not(:last-child) {
+  margin-bottom: 10px;
+}
+.task6table {
+  display: flex;
+  gap: 20px;
+}
+
+.task12table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.task12table tbody {
+  display: flex;
+}
+.task12button {
+  border: none;
+  background-color: #354aa8;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.task12button:hover {
+  background-color: #263a93;
+}
+.l5-active {
+  border-color: red;
+}

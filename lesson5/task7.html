@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Task7</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./lesson5.css">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 					</li>
 					<li class="breadcrumbs__item">
 						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №3
+							ДЗ №5
 						</a>
 					</li>
 					<li class="breadcrumbs__item">
@@ -33,38 +34,23 @@
 				</ul>
 			</nav>
 			<script>
-				//1.Вводимо необхідні дані
-				monthNumber = parseInt(prompt('Введіть номер місяця'))
-				let res
-				//2.Знаходимо результат
-				switch (monthNumber) {
-					case 12:
-					case 1:
-					case 2:
-						res = 'Зима'
-						break;
-					case 3:
-					case 4:
-					case 5:
-						res = 'Весна'
-						break;
-					case 6:
-					case 7:
-					case 8:
-						res = 'Літо'
-						break;
-					case 9:
-					case 10:
-					case 11:
-						res = 'Осінь'
-						break;
-					default:
-						res = 'Невірне число'
-						break;
-				}
-				alert(res)
-				//3.Виводимо результат
+				const paragraphNum = parseInt(prompt('Введіть суму абзаців'))
+				let stopNum = 1
+				let counter = 1
+				while (stopNum <= paragraphNum) {
+					document.write(`<h1>Заголовок ${counter}</h1>`)
 
+					for (let i = 1; i <= stopNum; i++) {
+
+						document.write(`<p>Розділ ${counter}, параграф ${i}</p>`)
+					}
+
+					document.write(`</h1>`)
+					document.write(`<hr>`)
+
+					stopNum += 1
+					counter++
+				}
 			</script>
 		</div>
 	</div>

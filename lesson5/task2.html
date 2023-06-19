@@ -5,14 +5,15 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Task7</title>
+	<title>Task2</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="./lesson5.css">
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<h1 class="main-title">Задача 7</h1>
+			<h1 class="main-title">Задача 2</h1>
 			<nav class="breadcrumbs">
 				<ul class="breadcrumbs__list">
 					<li class="breadcrumbs__item">
@@ -22,49 +23,20 @@
 					</li>
 					<li class="breadcrumbs__item">
 						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №3
+							ДЗ №5
 						</a>
 					</li>
 					<li class="breadcrumbs__item">
 						<span class="breadcrumbs__link breadcrumbs__link_active">
-							Task7
+							Task2
 						</span>
 					</li>
 				</ul>
 			</nav>
 			<script>
-				//1.Вводимо необхідні дані
-				monthNumber = parseInt(prompt('Введіть номер місяця'))
-				let res
-				//2.Знаходимо результат
-				switch (monthNumber) {
-					case 12:
-					case 1:
-					case 2:
-						res = 'Зима'
-						break;
-					case 3:
-					case 4:
-					case 5:
-						res = 'Весна'
-						break;
-					case 6:
-					case 7:
-					case 8:
-						res = 'Літо'
-						break;
-					case 9:
-					case 10:
-					case 11:
-						res = 'Осінь'
-						break;
-					default:
-						res = 'Невірне число'
-						break;
+				for (let i = 1; i <= 10; i++) {
+					document.write(`Product # ${i} <input type="text"> <br>`)
 				}
-				alert(res)
-				//3.Виводимо результат
-
 			</script>
 		</div>
 	</div>
