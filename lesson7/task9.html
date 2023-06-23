@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task9</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 9</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №7
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task9
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+				function getNegativeTemperature(num1) {
+					let negativeIndexNum = 0
+					for (let i = 1; i <= num1; i++) {
+						let temperatureReadings = parseFloat(prompt(`Введіть показник #${i}`))
+						if (temperatureReadings < 0)
+							negativeIndexNum++
+					}
+					return document.write(`Кількість відємних показів температури =  ${negativeIndexNum}`)
+				}
+				let measurementsNumber = parseInt(prompt('Введіть кількість замірів температури'))
+				getNegativeTemperature(measurementsNumber)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

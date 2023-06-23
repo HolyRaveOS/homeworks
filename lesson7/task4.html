@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 4</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №7
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task4
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+				function getResult(num1, num2, num3) {
+					let evenNum = 0
+					if (num1 % 2 === 0) {
+						evenNum++
+					}
+					if (num2 % 2 === 0) {
+						evenNum++
+					}
+					if (num3 % 2 === 0) {
+						evenNum++
+					}
+					let positiveNum = 0
+					if (num1 >= 0) {
+						positiveNum++
+					}
+					if (num2 >= 0) {
+						positiveNum++
+					}
+					if (num3 >= 0) {
+						positiveNum++
+					}
+					let greaterThan100Num = 0
+					if (num1 > 100) {
+						greaterThan100Num++
+					}
+					if (num2 > 100) {
+						greaterThan100Num++
+					}
+					if (num3 > 100) {
+						greaterThan100Num++
+					}
+					return [evenNum, positiveNum, greaterThan100Num]
+				}
+				let res = getResult(parseInt(prompt('Введіть число 1 ')), parseInt(prompt('Введіть число 2 ')), parseInt(prompt('Введіть число 3 ')))
+				document.write(`Кількість парних чисел = ${res[0]}<br>`)
+				document.write(`Кількість додатних чисел = ${res[1]}<br>`)
+				document.write(`Кількість чисел більших за 100 = ${res[2]}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task2</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 2</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №6
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task2
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				function getMonthName(monthNum) {
+					let result
+					switch (monthNum) {
+						case 1:
+							result = 'Січень'
+							break;
+						case 2:
+							result = 'Лютий'
+							break;
+						case 3:
+							result = 'Березень'
+							break;
+						case 4:
+							result = 'Квітень'
+							break;
+						case 5:
+							result = 'Травень'
+							break;
+						case 6:
+							result = 'Червень'
+							break;
+						case 7:
+							result = 'Липень'
+							break;
+						case 8:
+							result = 'Серпень'
+							break;
+						case 9:
+							result = 'Вересень'
+							break;
+						case 10:
+							result = 'Жовтень'
+							break;
+						case 11:
+							result = 'Листопад'
+							break;
+						case 1:
+							result = 'Грудень'
+							break;
+					}
+					return result
+				}
+				let userNum = parseInt(prompt('Введіть номер місяця'))
+				alert(getMonthName(userNum))
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -184,3 +184,25 @@ h6 {
 .breadcrumbs__link_active {
   color: red;
 }
+
+.for-check {
+  border-color: red;
+}
+
+.l-7-task9-wrapper {
+  text-align: center;
+}
+
+.l-7-task9-wrapper img {
+  border-radius: 10%;
+  transition: transform 0.3s;
+}
+
+.l-7-task9-wrapper img:hover {
+  transform: scale(1.1);
+}
+
+.l-7-task9-title {
+  margin-bottom: 50px;
+  font-size: 40px;
+}
