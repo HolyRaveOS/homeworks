@@ -33,7 +33,7 @@
 				</ul>
 			</nav>
 			<script>
-				function table(rows, columns, content) {
+				function createTable(rows, columns, content) {
 					document.write('<table border="2px">')
 					for (let i = 0; i < rows; i++) {
 						document.write('<tr>')
@@ -45,7 +45,7 @@
 					document.write('</table>')
 				}
 
-				table(parseInt(prompt('Введіть кількість рядків')),
+				createTable(parseInt(prompt('Введіть кількість рядків')),
 					parseInt(prompt('Введіть кількість колонок')),
 					(prompt('Введіть контент таблиці')))
 
