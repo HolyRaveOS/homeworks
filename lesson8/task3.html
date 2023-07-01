@@ -22,7 +22,7 @@
 					</li>
 					<li class="breadcrumbs__item">
 						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №6
+							ДЗ №8
 						</a>
 					</li>
 					<li class="breadcrumbs__item">
@@ -33,19 +33,35 @@
 				</ul>
 			</nav>
 			<script>
-				for (let num = 0; num < 3; num++) {
-					let endNum = 1
-					for (let i = 0; i < 5; i++) {
-						for (let j = 0; j < endNum; j++) {
-							document.write(`o`)
-						}
-						document.write(`<br>`)
-						endNum++
+
+				const studentsNum = parseInt(prompt('Введіть кількість учнів'))
+
+				function getStudentsNames(studentsNum) {
+					let studentsNames = []
+					for (let i = 0; i < studentsNum; i++) {
+						let userNames = prompt(`Введіть ім'я ${i + 1} Учня`)
+						studentsNames.push(userNames)
 					}
+					return studentsNames
 				}
+
+				function getNumOfIvanNames(studentsNames) {
+					let ivanNum = 0
+					for (let i = 0; i < studentsNames.length; i++) {
+						if (studentsNames[i] === 'Іван' || studentsNames[i] === 'Ivan')
+							ivanNum++
+					}
+					return ivanNum
+				}
+
+				let studentsNames = getStudentsNames(studentsNum)
+				let numOfIvanNames = getNumOfIvanNames(studentsNames)
+				document.write(`Ім'я Іван зустрічалося ${numOfIvanNames} разів`)
+
 			</script>
 		</div>
 	</div>
 </body>
+
 
 </html>

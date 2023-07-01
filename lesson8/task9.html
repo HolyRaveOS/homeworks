@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task9</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 9</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №8
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task9
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let cellNum = parseInt(prompt('Введіть кількість клітинок'))
+				let shipNum = parseInt(prompt('Введіть кількість кораблів'))
+
+				function getGameTable(cellNum, shipNum) {
+					let cellTable = []
+					for (let i = 0; i < cellNum; i++) {
+						cellTable.push(0)
+					}
+
+					for (let j = 0; j < shipNum;) {
+
+						let randomIndex = Math.floor(Math.random() * cellNum)
+						if (cellTable[randomIndex] === 0) {
+							cellTable[randomIndex] = 1
+							j++
+						}
+					}
+					return cellTable
+				}
+
+				function startGame(shipNum, gameTable) {
+
+					do {
+						let userShot = parseInt(prompt('Введіть номер клітинки по якій будемо стріляти'))
+						if (gameTable[userShot] === 1) {
+							alert('Є попадання')
+							shipNum--
+						}
+						else {
+							alert('Промах')
+						}
+					} while (shipNum > 0);
+
+					return alert('Корабель потоплено')
+				}
+
+				let gameTable = getGameTable(cellNum, shipNum)
+				let game = startGame(shipNum, gameTable)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task6</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 6</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №8
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task6
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				const productsNum = parseInt(prompt('Введіть кількість товарів'))
+				const userMoney = parseFloat(prompt('Введіть кількість грошей'))
+
+				function getProductsPrice(productsNum) {
+					let productsPrice = []
+					for (let i = 0; i < productsNum; i++) {
+						let userNum = parseFloat(prompt(`Введіть ціну ${i + 1} товару`))
+						productsPrice.push(userNum)
+					}
+					return productsPrice
+				}
+
+				function getProductsNames(productsNum) {
+					let productsNames = []
+					for (let i = 0; i < productsNum; i++) {
+						let userName = prompt(`Введіть назву ${i + 1} товару`)
+						productsNames.push(userName)
+					}
+					return productsNames
+				}
+
+				function getAffordableProducts(userMoney, productPrice, namesOfProducts) {
+					let affordableProducts = []
+					for (let i = 0; i < productPrice.length; i++) {
+						if (productPrice[i] <= userMoney)
+							affordableProducts.push(namesOfProducts[i])
+					}
+					return affordableProducts
+				}
+
+				let priceOfProducts = getProductsPrice(productsNum)
+				let namesOfProducts = getProductsNames(productsNum)
+				let affordableProducts = getAffordableProducts(userMoney, priceOfProducts, namesOfProducts)
+				document.write(`Товари які ви можете собі дозволити ${affordableProducts}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

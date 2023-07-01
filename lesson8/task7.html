@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 7</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №8
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task7
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				const year = 12
+
+				function getPayments(year) {
+					let payments = []
+					for (let i = 0; i < year; i++) {
+						let userNum = parseFloat(prompt(`Введіть суму платіжки за ${i + 1} місяць`))
+						payments.push(userNum)
+					}
+					return payments
+				}
+
+				function getYearSumOfPayments(payments) {
+					let yearSum = 0
+					for (let i = 0; i < payments.length; i++) {
+						yearSum += payments[i]
+					}
+					return yearSum
+				}
+
+				function getSumOfFirsHalfOfYear(payments) {
+					let fistHalfYearSum = 0
+					for (let i = 0; i < 6; i++) {
+						fistHalfYearSum += payments[i]
+					}
+					return fistHalfYearSum
+				}
+
+				function getSumOfSecondHalfOfYear(payments) {
+					let secondHalfYearSum = 0
+					for (let i = 6; i < 12; i++) {
+						secondHalfYearSum += payments[i]
+					}
+					return secondHalfYearSum
+				}
+
+				function getSumForSummer(payments) {
+					let sumForSummer = 0
+					for (let i = 5; i < 8; i++) {
+						sumForSummer += payments[i]
+					}
+					return sumForSummer
+				}
+
+				function getSumForSecondQuarter(payments) {
+					let secondQuarterSum = 0
+					for (let i = 3; i < 6; i++) {
+						secondQuarterSum += payments[i]
+					}
+					return secondQuarterSum
+				}
+
+				function getSumForMonthWithEvenNumbers(payments, monthNum) {
+					let evenMonthSum = 0
+					for (let i = 0; i < monthNum; i++) {
+						if (i % 2 !== 0)
+							evenMonthSum += payments[i]
+					}
+					return evenMonthSum
+				}
+
+				function getSumForFirstMonthInSeasons(payments) {
+					let firstMonthInSeasonsSum = 0
+					for (let i = 2; i < 12; i += 3) {
+						firstMonthInSeasonsSum += payments[i]
+					}
+					return firstMonthInSeasonsSum
+				}
+
+				let yearPayments = getPayments(year)
+				let yearSumOfPayments = getYearSumOfPayments(yearPayments)
+				let sumOfFirsHalfOfYear = getSumOfFirsHalfOfYear(yearPayments)
+				let sumOfSecondHalfOfYear = getSumOfSecondHalfOfYear(yearPayments)
+				let summerIncome = getSumForSummer(yearPayments)
+				let sumForSecondQuarter = getSumForSecondQuarter(yearPayments)
+				let sumForMonthWithEvenNumbers = getSumForMonthWithEvenNumbers(yearPayments, year)
+				let sumForFirstMonthInSeasons = getSumForFirstMonthInSeasons(yearPayments)
+				document.write(sumForFirstMonthInSeasons)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 4</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №8
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task4
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				const carNumAmount = parseInt(prompt('Ведіть кількість автомобільних номерів'))
+				function getCarNumbers(carNumAmount) {
+					let carNumbers = []
+					for (let i = 0; i < carNumAmount; i++) {
+						let carNum = prompt(`Введіть номер автомобіля № ${i + 1}`)
+						carNumbers.push(carNum)
+					}
+					return carNumbers
+				}
+
+				function getAmountOfCarNumWithFirstLetterA(carNumbers) {
+					let carWithFistLetterANum = 0
+					for (let i = 0; i < carNumbers.length; i++) {
+						if (carNumbers[i][0] === 'A' || carNumbers[i][0] === 'А')
+							carWithFistLetterANum++
+					}
+					return carWithFistLetterANum
+				}
+
+				function getAmountOfCarNumWithEvenFirstAndLastSymbol(carNumbers) {
+					let carWithEvenFirstAndLastSymbolNum = 0
+					for (let i = 0; i < carNumbers.length; i++) {
+						if (carNumbers[i][0] === carNumbers[i].slice(-1))
+							carWithEvenFirstAndLastSymbolNum++
+					}
+					return carWithEvenFirstAndLastSymbolNum
+				}
+
+				function getAmountOfCarNumWithMoreThan5Symbol(carNumbers) {
+					let carWithMoreThan5SymbolNum = 0
+					for (let i = 0; i < carNumbers.length; i++) {
+						if (carNumbers[i].length > 5)
+							carWithMoreThan5SymbolNum++
+					}
+					return carWithMoreThan5SymbolNum
+				}
+
+				let carNumbers = getCarNumbers(carNumAmount)
+				let amountOfCarNumWithFirstLetterA = getAmountOfCarNumWithFirstLetterA(carNumbers)
+				let amountOfCarNumWithEvenFirstAndLastSymbol = getAmountOfCarNumWithEvenFirstAndLastSymbol(carNumbers)
+				let amountOfCarNumWithMoreThan5Symbol = getAmountOfCarNumWithMoreThan5Symbol(carNumbers)
+				document.write(`
+				Кількість номерів які починаються на букву «А» = ${amountOfCarNumWithFirstLetterA}<br>
+				Кількість номерів у яких перший і останій символ одинаковий = ${amountOfCarNumWithEvenFirstAndLastSymbol}<br>
+				Кількість номерів у яких більше ніж 5 символів = ${amountOfCarNumWithMoreThan5Symbol}
+				`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

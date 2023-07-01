@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task8</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 8</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №8
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task8
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+
+				function getElementsWithPrize(min, max, elementsNum) {
+					let elementsArr = [0]
+					for (let i = 0; i < elementsNum; i++) {
+						let randomAmount = min + Math.floor(Math.random() * (max - min + 1))
+						elementsArr.push(randomAmount)
+					}
+					return elementsArr
+				}
+
+
+				function getTotalWin(elementsWithPrize) {
+					let prize = 0
+					let userInput
+
+					do {
+						userInput = parseInt(prompt(`Введіть номер елемента від 1 до ${elementsAmount}. 
+Щоб зупитини гру напишіть 777.`))
+
+						if (isNaN(userInput)) {
+							userInput = 0
+						}
+						if (isNaN(elementsWithPrize[userInput]))
+							prize += 0
+
+						else if (userInput !== 777) {
+							prize += elementsWithPrize[userInput]
+							alert(`Ваш баланс = ${prize}`)
+						}
+
+					} while (userInput !== 777)
+					document.write(`Гра закінчина ваш виграш = ${prize}`)
+					return prize
+				}
+
+				let elementsAmount = 7
+				let elementsWithPrize = getElementsWithPrize(-500, 500, elementsAmount)
+				let totalWin = getTotalWin(elementsWithPrize)
+
+			</script>
+		</div>
+	</div>
+</body>
+</div>
+
+
+</html>
