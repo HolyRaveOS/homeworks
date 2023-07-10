@@ -45,13 +45,12 @@
 
 				function getLowerThan20CustomersPerDay(customersPerDay) {
 					let lowerThan20 = []
-					for (let i = 0; i < 7; i++) {
+					for (let i = 0; i < customersPerDay.length; i++) {
 						if (customersPerDay[i] < 20)
-							lowerThan20.push([i + 1])
+							lowerThan20.push(i + 1)
 					}
 					return lowerThan20
 				}
-
 
 				function getMinNumOfCustomers(customersPerDay) {
 					let minNum = customersPerDay[0]
@@ -60,6 +59,7 @@
 					}
 					return minNum
 				}
+
 				function getMaxNumOfCustomers(customersPerWeek) {
 					let maxNum = customersPerWeek[0]
 					for (let i = 1; i < customersPerWeek.length; i++) {
@@ -68,21 +68,13 @@
 					return maxNum
 				}
 
-				function getDaysWithMinNumOfCustomers(minNumOfCustomers, customersPerWeek) {
-					let dayWithMinNum = []
+				function getDaysWithMinAndMaxNumOfCustomers(minOrMaxNumOfCustomers, customersPerWeek) {
+					let dayWithMinOrMaxNum = []
 					for (let i = 0; i < customersPerWeek.length; i++) {
-						if (customersPerWeek[i] === minNumOfCustomers)
-							dayWithMinNum.push(i + 1)
+						if (customersPerWeek[i] === minOrMaxNumOfCustomers)
+							dayWithMinOrMaxNum.push(i + 1)
 					}
-					return dayWithMinNum
-				}
-				function getDaysWithMaxNumOfCustomers(maxNumOfCustomers, customersPerWeek) {
-					let dayWithMaxNum = []
-					for (let i = 0; i < customersPerWeek.length; i++) {
-						if (customersPerWeek[i] === maxNumOfCustomers)
-							dayWithMaxNum.push(i + 1)
-					}
-					return dayWithMaxNum
+					return dayWithMinOrMaxNum
 				}
 
 				function getSumOfCustomersInWorkingDays(customersPerWeek) {
@@ -105,8 +97,8 @@
 				let lowerThan20CustomersPerDay = getLowerThan20CustomersPerDay(customersWeekNum)
 				let minCustomersPerDay = getMinNumOfCustomers(customersWeekNum)
 				let maxCustomersPerDay = getMaxNumOfCustomers(customersWeekNum)
-				let daysWithMinNumOfCustomers = getDaysWithMinNumOfCustomers(minCustomersPerDay, customersWeekNum)
-				let daysWithMaxNumOfCustomers = getDaysWithMaxNumOfCustomers(maxCustomersPerDay, customersWeekNum)
+				let daysWithMinNumOfCustomers = getDaysWithMinAndMaxNumOfCustomers(minCustomersPerDay, customersWeekNum)
+				let daysWithMaxNumOfCustomers = getDaysWithMinAndMaxNumOfCustomers(maxCustomersPerDay, customersWeekNum)
 				let sumOfCustomersInWorkingDays = getSumOfCustomersInWorkingDays(customersWeekNum)
 				let sumOfCustomersInWeekendDays = getSumOfCustomersInWeekendDays(customersWeekNum)
 				document.write(`

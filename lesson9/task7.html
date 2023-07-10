@@ -22,7 +22,7 @@
 					</li>
 					<li class="breadcrumbs__item">
 						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №7
+							ДЗ №9
 						</a>
 					</li>
 					<li class="breadcrumbs__item">
@@ -34,43 +34,32 @@
 			</nav>
 			<script>
 
-				function getImg(img1, img2, img3, img4) {
-					let randomNum = 1 + Math.floor(Math.random() * 4);
-					let res
-					switch (randomNum) {
-						case 1:
-							res = img1
-							break;
-						case 2:
-							res = img2
-							break;
-						case 3:
-							res = img3
-							break;
-						case 4:
-							res = img4
-							break;
+				let priceNum = parseInt(prompt('Введіть кількість цін'))
+
+				function getPricesArr(priceNum) {
+					let pricesArr = []
+					for (let i = 0; i < priceNum; i++) {
+						let usrPrice = parseInt(prompt(`Введіть ціну для ${i + 1} товару`))
+						pricesArr.push(usrPrice)
 					}
-					return res
+					return pricesArr
 				}
 
-				let imgPath = getImg(
-					'./task7img/1.png',
-					'./task7img/2.png',
-					'./task7img/3.png',
-					'./task7img/4.png'
-				)
-
-				function getRandomImg(imgPath) {
-					document.write(`<img src="${imgPath}" alt="img" width="200" height="200">`)
+				let getDiscount = () => {
+					pricesArr.forEach((priceArrEl, pricesArrIndex, pricesArr) => {
+						if (priceArrEl >= 1000) {
+							pricesArr[pricesArrIndex] = pricesArr[pricesArrIndex] - (pricesArr[pricesArrIndex] * (30 / 100))
+						}
+					});
+					return pricesArr
 				}
 
-				let randomImg = getRandomImg(imgPath)
+				let pricesArr = getPricesArr(priceNum)
+				document.write(getDiscount())
 
 			</script>
 		</div>
 	</div>
 </body>
-
 
 </html>

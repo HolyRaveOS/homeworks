@@ -5,14 +5,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Task7</title>
+	<title>Task4</title>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<h1 class="main-title">Задача 7</h1>
+			<h1 class="main-title">Задача 4</h1>
 			<nav class="breadcrumbs">
 				<ul class="breadcrumbs__list">
 					<li class="breadcrumbs__item">
@@ -22,55 +22,41 @@
 					</li>
 					<li class="breadcrumbs__item">
 						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №7
+							ДЗ №9
 						</a>
 					</li>
 					<li class="breadcrumbs__item">
 						<span class="breadcrumbs__link breadcrumbs__link_active">
-							Task7
+							Task4
 						</span>
 					</li>
 				</ul>
 			</nav>
 			<script>
 
-				function getImg(img1, img2, img3, img4) {
-					let randomNum = 1 + Math.floor(Math.random() * 4);
-					let res
-					switch (randomNum) {
-						case 1:
-							res = img1
-							break;
-						case 2:
-							res = img2
-							break;
-						case 3:
-							res = img3
-							break;
-						case 4:
-							res = img4
-							break;
+				let elementNum = parseInt(prompt('Введіть кількість елементів'))
+
+				let getUserEl = (elementNum) => {
+					let elementsArr = []
+					for (let i = 0; i < elementNum; i++) {
+						userEl = parseInt(prompt(`Ведіть число ${i + 1} елемента`))
+						elementsArr.push(userEl)
 					}
-					return res
+					return elementsArr
 				}
 
-				let imgPath = getImg(
-					'./task7img/1.png',
-					'./task7img/2.png',
-					'./task7img/3.png',
-					'./task7img/4.png'
-				)
-
-				function getRandomImg(imgPath) {
-					document.write(`<img src="${imgPath}" alt="img" width="200" height="200">`)
+				let getBiggerThan100 = () => {
+					for (const elNum of getUserEl(elementNum)) {
+						if (elNum > 100)
+							document.write(`${elNum}<br>`)
+					}
 				}
 
-				let randomImg = getRandomImg(imgPath)
+				getBiggerThan100()
 
 			</script>
 		</div>
 	</div>
 </body>
-
 
 </html>

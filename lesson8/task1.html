@@ -44,16 +44,12 @@
 					return rating
 				}
 
-				function getSumOfGrades(grades) {
+				function getAverage(grades) {
 					let gradesSum = 0
 					for (let i = 0; i < grades.length; i++) {
 						gradesSum += grades[i]
 					}
-					return gradesSum
-				}
-
-				function getAverage(gradesSum, gradesLength) {
-					return gradesSum / gradesLength
+					return gradesSum / grades.length
 				}
 
 				function getMinRating(grades) {
@@ -78,8 +74,7 @@
 				}
 
 				let gradesNum = getGrades(numberOfGrades)
-				let gradesSum = getSumOfGrades(gradesNum)
-				let gradesAverage = getAverage(gradesSum, gradesNum.length)
+				let gradesAverage = getAverage(gradesNum)
 				let minRating = getMinRating(gradesNum)
 				let gradesCategory = getCategory(minRating)
 				document.write(`Середній бал = ${gradesAverage.toFixed(2)} ваша категорія ${gradesCategory}`)

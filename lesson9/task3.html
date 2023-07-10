@@ -5,14 +5,14 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Task7</title>
+	<title>Task3</title>
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 	<div class="wrapper">
 		<div class="container">
-			<h1 class="main-title">Задача 7</h1>
+			<h1 class="main-title">Задача 3</h1>
 			<nav class="breadcrumbs">
 				<ul class="breadcrumbs__list">
 					<li class="breadcrumbs__item">
@@ -22,51 +22,22 @@
 					</li>
 					<li class="breadcrumbs__item">
 						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №7
+							ДЗ №9
 						</a>
 					</li>
 					<li class="breadcrumbs__item">
 						<span class="breadcrumbs__link breadcrumbs__link_active">
-							Task7
+							Task3
 						</span>
 					</li>
 				</ul>
 			</nav>
 			<script>
+				let userEl = parseInt(prompt('Введіть кількість елементів'))
 
-				function getImg(img1, img2, img3, img4) {
-					let randomNum = 1 + Math.floor(Math.random() * 4);
-					let res
-					switch (randomNum) {
-						case 1:
-							res = img1
-							break;
-						case 2:
-							res = img2
-							break;
-						case 3:
-							res = img3
-							break;
-						case 4:
-							res = img4
-							break;
-					}
-					return res
-				}
+				let elArr = new Array(userEl).fill(1, 0).fill(7, 5)
 
-				let imgPath = getImg(
-					'./task7img/1.png',
-					'./task7img/2.png',
-					'./task7img/3.png',
-					'./task7img/4.png'
-				)
-
-				function getRandomImg(imgPath) {
-					document.write(`<img src="${imgPath}" alt="img" width="200" height="200">`)
-				}
-
-				let randomImg = getRandomImg(imgPath)
-
+				document.write(elArr)
 			</script>
 		</div>
 	</div>
