@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 1</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №10
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task1
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let userNum = parseInt(prompt('Введіть кількість цін'))
+
+				function getPriceArr(userNum) {
+					arr = []
+					for (let i = 0; i < userNum; i++) {
+						arr.push(1 + Math.floor(Math.random() * 10000))
+					}
+					return arr
+				}
+				let priceArr = getPriceArr(userNum)
+
+				//1)Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+				let biggerThan1000 = (priceArr) => { return priceArr.filter(price => price > 1000) }
+
+				// 2)Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+
+				//1 Варіант
+				// let biggerThan1000El = () => {
+				// 	let biggerThan1000Arr = []
+				// 	priceArr.map(
+				// 		(price, arrIndex) => price > 1000 ? biggerThan1000Arr.push(arrIndex) : price
+				// 	)
+				// 	return biggerThan1000Arr
+				// }
+
+				//2 Варіант
+
+				let biggerThan1000El = (priceArr) => {
+					let biggerThan1000ElArr = priceArr.reduce(
+						(biggerEl, priceEl, priceIndex) => {
+							if (priceEl > 1000) {
+								biggerEl.push(priceIndex)
+							}
+							return biggerEl
+						},
+						[]
+					)
+					return biggerThan1000ElArr
+				}
+
+				// 3)Сформувати список з тих цін, які більші за попереднє значення
+				let biggerThanPrevious = (priceArr) => {
+					return priceArr.filter((priceEl, priceIndex) => priceEl > priceArr[priceIndex - 1])
+				}
+
+				// 4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+
+				let pricesInPercent = (priceArr) => {
+					let maxPrice = priceArr.reduce((prevMax, priceEl) => (priceEl > prevMax ? priceEl : prevMax))
+					let pricesInPercentArr = priceArr.map(priceEl => ((priceEl / maxPrice) * 100).toFixed(0)).join('%,')
+					return pricesInPercentArr
+				}
+				//5)Підрахувати кількість змін цін
+				let numberOfPriceChanges = (priceArr) => {
+					let priceChangesNum = priceArr.reduce((changeCount, priceEl, index) =>
+						priceEl !== priceArr[index - 1] ? changeCount + 1 : changeCount, -1)
+					return priceChangesNum
+				}
+
+				//6)Визначити, чи є ціна, що менше 1000
+				let lowerThan100 = (priceArr) => { return priceArr.some(el => el < 1000) ? 'Так' : 'Ні' }
+
+				// 7)Визначати, чи усі ціни більше за 1000
+				let checkBiggerThan1000 = (priceArr) => { return priceArr.every(el => el > 1000) ? 'Так' : 'Ні' }
+
+				// 8)Підрахувати кількість цін, що більше за 1000
+				let biggerThan1000Num = (priceArr) => {
+					let biggerThan1000Count = priceArr.reduce((count, priceEl) =>
+						priceEl > 1000 ? count + 1 : count, 0
+					)
+					return biggerThan1000Count
+				}
+				// Підрахувати суму цін, що більше за 1000
+
+				let biggerThan1000Sum = (priceArr) => {
+					let sum = priceArr.reduce((prevPriceEl, priceEl) =>
+						priceEl > 1000 ? prevPriceEl + priceEl : prevPriceEl, 0
+					)
+					return sum
+				}
+
+				// 10)Знайти першу ціну, що більше за 1000
+
+				let firstPriceBiggerThan1000 = (priceArr) => { return priceArr.find(priceEl => priceEl > 1000) }
+
+				// 11)Знайти індекс першої ціни, що більше за 1000
+
+				let firstIndexWithPriceBiggerThan1000 = (priceArr) => { return priceArr.findIndex(priceEl => priceEl > 1000) }
+
+				//12) Знайти останню ціну, що більше за 1000
+
+				let lastBiggerThan1000Price = (priceArr) => { return priceArr.findLast(priceEl => priceEl > 1000) }
+
+				//13) Знайти індекс останньої ціни, що більше за 1000
+
+				let lastIndexWithPriceBiggerThan1000 = (priceArr) => {
+					return priceArr.findLastIndex(priceEl => priceEl > 1000)
+				}
+
+				document.write(`
+				Масив цін більших за 1000 = ${biggerThan1000(priceArr)}<br>
+				Номери цін більших за 1000 = ${biggerThan1000El(priceArr)}<br>
+				Номери цін більші за попереднє значення = ${biggerThanPrevious(priceArr)}<br>
+				Ціни у відсотках стосовно максимального = ${pricesInPercent(priceArr)}%<br>
+				Кількість змін цін = ${numberOfPriceChanges(priceArr)}<br>
+				Чи є ціна, що менше за 1000 = ${lowerThan100(priceArr)}<br>
+				Чи усі ціни більше за 1000 = ${checkBiggerThan1000(priceArr)}<br>
+				Кількість цін, що більше за 1000 = ${biggerThan1000Num(priceArr)}<br>
+				Сума цін, що більше за 1000 = ${biggerThan1000Sum(priceArr)}<br>
+				Перша ціна, що більше за 1000 = ${firstPriceBiggerThan1000(priceArr)}<br>
+				Індекс першої ціни, що більше за 1000 = ${firstIndexWithPriceBiggerThan1000(priceArr)}<br>
+				Остання ціна, що більше за 1000 = ${lastBiggerThan1000Price(priceArr)}<br>
+				Індекс останньої ціни, що більше за 1000 = ${lastIndexWithPriceBiggerThan1000(priceArr)}<br>
+				`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
