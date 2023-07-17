@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 1</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №11
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task1
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				const rowNum = parseInt(prompt('Введіть кількість рядків'))
+				const columnNum = parseInt(prompt('Введіть кількість стовпців'))
+
+				let randomNum = (minValue, maxValue) => {
+					return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+				}
+
+				let randomArr = (arrLenght, minValue, maxValue) => {
+					const arr = []
+					for (let i = 0; i < arrLenght; i++) {
+						arr.push(randomNum(minValue, maxValue))
+					}
+					return arr
+				}
+
+				let getTable = (rowsNum, columnNum, minValue, maxValue) => {
+					const table = []
+					for (let i = 0; i < rowsNum; i++) {
+						table.push(randomArr(columnNum, minValue, maxValue))
+					}
+					return table
+				}
+
+				let table = getTable(rowNum, columnNum, 1, 500)
+
+				let tableForDocumentWrite = table.join('<br>')
+
+				// 1)
+				let getBox1Sum = (table) => {
+					let box1Sum = 0
+					for (let i = 0; i < table.length / 2; i++) {
+						for (let j = 0; j < table[i].length / 2; j++) {
+							box1Sum += table[i][j]
+						}
+					}
+					return box1Sum
+				}
+
+				//2)
+				let getBox2Sum = (table) => {
+					let box2Sum = 0
+					for (let i = 0; i < table.length / 2; i++) {
+						for (let j = table.length / 2; j < table[i].length; j++) {
+							box2Sum += table[i][j]
+						}
+					}
+					return box2Sum
+				}
+
+				//3
+				let getBox3Sum = (table) => {
+					let box3Sum = 0
+					for (let i = table.length / 2; i < table.length; i++) {
+						for (let j = 0; j < table[i].length / 2; j++) {
+							box3Sum += table[i][j]
+						}
+					}
+					return box3Sum
+				}
+
+				//4
+				let getBox4Sum = (table) => {
+					let box4Sum = 0
+					for (let i = table.length / 2; i < table.length; i++) {
+						for (let j = table.length / 2; j < table[i].length; j++) {
+							box4Sum += table[i][j]
+						}
+					}
+					return box4Sum
+				}
+
+				//5
+				let getBox5Sum = (table) => {
+					let box5Sum = 0
+					for (let i = 0; i < table.length; i += 2) {
+						for (let j = 0; j < table[i].length; j++) {
+							box5Sum += table[i][j]
+						}
+					}
+					return box5Sum
+				}
+
+				//6
+				let getBox6Sum = (table) => {
+					let box6Sum = 0
+					for (let i = 0; i < table.length; i++) {
+						for (let j = 1; j < table[i].length; j += 2) {
+							box6Sum += table[i][j]
+						}
+					}
+					return box6Sum
+				}
+
+				//7 
+				let getBox7Sum = (table) => {
+					let box7Sum = 0
+					for (let i = 0; i < table.length; i += 2) {
+						for (let j = 1; j < table[i].length; j += 2) {
+							box7Sum += table[i][j]
+						}
+					}
+					return box7Sum
+				}
+
+				document.write(`
+				МАСИВ = <br><br>${tableForDocumentWrite}<br><br>
+Сума 1 квадрату = ${getBox1Sum(table)}<br>
+Сума 2 квадрату = ${getBox2Sum(table)}<br>
+Сума 3 квадрату = ${getBox3Sum(table)}<br>
+Сума 4 квадрату = ${getBox4Sum(table)}<br>
+Сума парних рядків = ${getBox5Sum(table)}<br>
+Сума непарних стовпців = ${getBox6Sum(table)}<br>
+Сума парних рядках – непарні стовпці, у непарних – парні = ${getBox7Sum(table)}
+`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

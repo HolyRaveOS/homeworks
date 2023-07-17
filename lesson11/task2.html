@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task2</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 2</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №11
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task2
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				const shopNum = parseInt(prompt('Введіть кількість магазиніів'))
+
+				let randomNum = (minValue, maxValue) => {
+					return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+				}
+
+				let randomArr = (arrLength, minValue, maxValue) => {
+					const arr = []
+					for (let i = 0; i < arrLength; i++) {
+						arr.push(randomNum(minValue, maxValue))
+					}
+					return arr
+				}
+
+				let getTable = (rowsNum, columnNum, minValue, maxValue) => {
+					const table = []
+					for (let i = 0; i < rowsNum; i++) {
+						table.push(randomArr(columnNum, minValue, maxValue))
+					}
+					return table
+				}
+
+				let table = getTable(shopNum, 7, 0, 5000)
+
+				let tableForDocumentWrite = table.join('<br>')
+
+
+				//1) загальний прибуток кожного масиву за тиждень;
+
+				let getTotalIncomeForWeek = (table) => {
+					let weekSum = 0
+
+					let shopWeekSum = []
+
+					for (let week = 0; week < table.length; week++) {
+						for (let day = 0; day < table[week].length; day++) {
+							weekSum += table[week][day]
+						}
+						shopWeekSum.push(weekSum)
+						weekSum = 0
+					}
+					return shopWeekSum
+				}
+
+				//2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+
+				let totalIncomeForDays = (table) => {
+
+					let shopDaysIncome = new Array(7).fill(0)
+
+					for (let week = 0; week < table.length; week++) {
+						for (let day = 0; day < table[week].length; day++) {
+							shopDaysIncome[day] += table[week][day]
+						}
+					}
+					return shopDaysIncome
+				}
+
+				// 3) загальний прибуток за робочі дні
+
+				let getIncomeForWorkingDays = (table) => {
+					let sum = 0
+					for (let week = 0; week < table.length; week++) {
+						for (let day = 0; day < 5; day++) {
+							sum += table[week][day]
+						}
+					}
+					return sum
+				}
+
+				// загальний прибуток за вихідні дні
+
+				let getIncomeForeWeekendDays = (table) => {
+					let sum = 0
+					for (let week = 0; week < table.length; week++) {
+						for (let day = 5; day < table[week].length; day++) {
+							sum += table[week][day]
+						}
+					}
+					return sum
+				}
+
+				//максимальний прибуток за середу
+
+				let getMaxIncomeForWednesday = (table) => {
+					let maxIncome = 0
+					for (let week = 0; week < table.length; week++) {
+						for (let day = 0; day < table[week].length; day++) {
+							if (maxIncome < table[week][2]) {
+								maxIncome = table[week][2]
+							}
+						}
+					}
+					return maxIncome
+				}
+
+				// 6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+
+				let getBiggerThan200 = (table) => {
+					let biggerThan200 = table.flat(Infinity).filter(el => el > 200)
+					return biggerThan200
+				}
+
+				// 7) відсортувати кожен тиждень за зростанням
+
+				let sortWeeksByIncrease = (table) => {
+
+					for (let week = 0; week < table.length; week++) {
+						table[week].sort((el1, el2) => el1 - el2)
+					}
+					return table.join('<br>')
+				}
+
+
+				document.write(`
+				МАСИВ <br><br>${tableForDocumentWrite}<br><br>
+				Загальний прибуток кожного масиву за тиждень = ${getTotalIncomeForWeek(table)}<br><br>
+				Загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д = ${totalIncomeForDays(table)}<br><br>
+				Загальний прибуток за робочі дні = ${getIncomeForWorkingDays(table)}<br><br>
+				Загальний прибуток за вихідні дні = ${getIncomeForeWeekendDays(table)}<br><br>
+				Максимальний прибуток за середу = ${getMaxIncomeForWednesday(table)}<br><br>
+				Одновимірний масив зі значенням, які що більші за 200 = ${getBiggerThan200(table)}<br><br>
+				Кожен тиждень за зростанням = <br> ${sortWeeksByIncrease(table)}<br>
+				`)
+
+				console.log(table);
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
