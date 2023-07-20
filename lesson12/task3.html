@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 3</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №12
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task3
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let randomNum = (minValue, maxValue) => {
+					return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+				}
+
+				let getRandomArr = (arrLength, minValue, maxValue) => {
+					const arr = []
+					for (let i = 0; i < arrLength; i++) {
+						arr.push(randomNum(minValue, maxValue))
+					}
+					return arr
+				}
+
+				let randomArr = getRandomArr(30, 0, 50)
+				let counter = 0
+
+				let getSortedArr = (randomArr) => {
+					let currentEl, j
+					for (let i = 1; i < randomArr.length; i++) {
+						currentEl = randomArr[i]
+						j = i - 1
+						while (j >= 0 && randomArr[j] > currentEl) {
+							randomArr[j + 1] = randomArr[j]
+							j = j - 1
+						}
+						randomArr[j + 1] = currentEl
+						counter++
+					}
+					return randomArr
+				}
+
+				document.write(`
+				Масив <br><br> ${randomArr}<br><br>
+				Відсортований масив <br><br> ${getSortedArr(randomArr)}<br><br>
+				Кількість обмінів = ${counter}
+				`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

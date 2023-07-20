@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 4</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №12
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task4
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let randomNum = (minValue, maxValue) => {
+					return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+				}
+
+				let getRandomArr = (arrLength, minValue, maxValue) => {
+					const arr = []
+					for (let i = 0; i < arrLength; i++) {
+						arr.push(randomNum(minValue, maxValue))
+					}
+					return arr
+				}
+
+				let randomArr1 = getRandomArr(5, 0, 50)
+				let randomArr2 = getRandomArr(5, 0, 50)
+				let randomArr3 = getRandomArr(5, 0, 50)
+
+				function swap(arr, i, j) {
+					if (j === +1) {
+						let temp = arr[i]
+						arr[i] = arr[i + 1]
+						arr[i + 1] = temp
+					}
+					if (j === -1) {
+						let temp = arr[i]
+						arr[i] = arr[i - 1]
+						arr[i - 1] = temp
+					}
+					if (j === 0) {
+						let temp = arr[i - 1]
+						arr[i - 1] = arr[i]
+						arr[i] = temp
+					}
+				}
+
+				let getSortedByBubble = (randomArr) => {
+					document.write('Сортування бульбашкою<br><br>')
+					let changed
+					do {
+						changed = false
+						for (let i = 1; i < randomArr.length; i++) {
+							if (randomArr[i - 1] > randomArr[i]) {
+								swap(randomArr, i, 0)
+								changed = true
+								document.write(`[${randomArr}]<br>`)
+							}
+						}
+					}
+					while (changed)
+					return randomArr
+				}
+
+				let getSortedByMixing = (randomArr, leftIndex, rightIndex) => {
+
+					document.write('<br>Сортування Змішуванням<br><br>')
+					while (leftIndex < rightIndex) {
+						for (let i = leftIndex; i < rightIndex; i++) {
+
+							if (randomArr[i] > randomArr[i + 1]) {
+								swap(randomArr, i, + 1)
+								document.write(`[${randomArr}]<br>`)
+							}
+						}
+
+						rightIndex--
+						for (let i = rightIndex; i > leftIndex; i--) {
+							if (randomArr[i] < randomArr[i - 1]) {
+								swap(randomArr, i, - 1)
+								document.write(`[${randomArr}]<br>`)
+							}
+						}
+
+						leftIndex++
+					}
+					return randomArr
+				}
+
+				let getSortedByInclusion = (randomArr) => {
+					document.write('<br>Сортування за включеннями<br><br>')
+					let currentEl, j
+					for (let i = 1; i < randomArr.length; i++) {
+						currentEl = randomArr[i]
+						j = i - 1
+						while (j >= 0 && randomArr[j] > currentEl) {
+							randomArr[j + 1] = randomArr[j]
+							j = j - 1
+						}
+						randomArr[j + 1] = currentEl
+						document.write(`[${randomArr}]<br>`)
+					}
+					return randomArr
+				}
+
+				getSortedByBubble(randomArr1)
+				getSortedByMixing(randomArr2, 0, randomArr2.length - 1)
+				getSortedByInclusion(randomArr3)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+
+</html>
