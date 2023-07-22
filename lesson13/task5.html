@@ -46,9 +46,16 @@
 					sum = firstFigure + secondFigure
 					userAnswer === sum ? alert('Вірно') : alert(`Не вірно правильна відповідь = ${sum}`)
 					return userAnswer
+
 				}
 
-				setInterval(createSimulator, 10000, firstFigure, secondFigure)
+				function timeOut() {
+					setTimeout(() => {
+						createSimulator(firstFigure, secondFigure)
+						timeOut()
+					}, 10000)
+				}
+				timeOut()
 
 			</script>
 		</div>
