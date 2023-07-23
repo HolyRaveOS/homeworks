@@ -37,16 +37,13 @@
 				let userNumForA = parseFloat(prompt('Вкажіть число для a'))
 				let userNumForN = parseFloat(prompt('Вкажіть до якої степені піднести число а'))
 
-				let sum = 1
 				function getThePowerOfA(a, n) {
-					if (n === 0) return a
-					getThePowerOfA(a, n - 1) * n
-					sum *= a
+					if (n === 1) return a
+					return getThePowerOfA(a, n - 1) * a
 				}
 
-				getThePowerOfA(userNumForA, userNumForN)
 				document.write(`
-			степень числа а =	${sum}
+			степень числа а =	${getThePowerOfA(userNumForA, userNumForN)}
 				`)
 
 			</script>

@@ -34,7 +34,7 @@
 			</nav>
 			<script>
 
-				const shopNum = parseInt(prompt('Введіть кількість магазиніів'))
+				const shopNum = parseInt(prompt('Введіть кількість магазинів'))
 
 				let randomNum = (minValue, maxValue) => {
 					return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
@@ -147,6 +147,27 @@
 					return table.join('<br>')
 				}
 
+				// 8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+				let func = (table) => {
+					maxArr = table.map((row) => Math.max(...row))
+					let currentElement, prevEl, currentElement1, prevEl1
+					for (let i = 1; i < maxArr.length; i++) {
+						currentElement = maxArr[i]
+						prevEl = i - 1
+						currentElement1 = table[i]
+						prevEl1 = i - 1
+						while (prevEl >= 0 && maxArr[prevEl] < currentElement) {
+							maxArr[prevEl + 1] = maxArr[prevEl]
+							table[prevEl1 + 1] = table[prevEl1]
+							prevEl -= 1
+							prevEl1 -= 1
+						}
+						maxArr[prevEl + 1] = currentElement
+						table[prevEl1 + 1] = currentElement1
+					}
+					return table.join('<br>')
+				}
 
 				document.write(`
 				МАСИВ <br><br>${tableForDocumentWrite}<br><br>
@@ -156,10 +177,10 @@
 				Загальний прибуток за вихідні дні = ${getIncomeForeWeekendDays(table)}<br><br>
 				Максимальний прибуток за середу = ${getMaxIncomeForWednesday(table)}<br><br>
 				Одновимірний масив зі значенням, які що більші за 200 = ${getBiggerThan200(table)}<br><br>
-				Кожен тиждень за зростанням = <br> ${sortWeeksByIncrease(table)}<br>
+				Кожен тиждень за зростанням = <br> ${sortWeeksByIncrease(table)}<br><br>
+				Тижні (рядки) за спаданням максимального елементи у цьому тижні = <br> ${func(table)}<br>
 				`)
 
-				console.log(table);
 			</script>
 		</div>
 	</div>

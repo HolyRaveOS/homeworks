@@ -44,13 +44,14 @@
 
 					function binarySearch(start, end) {
 						if (start > end) {
-							return 'Такого числа немає'
+							return false
 						}
 
 						let middle = Math.floor((start + end) / 2)
 
 						if (arr[middle] === searchEl) {
-							return 'Таке число є' + ' ' + 'під індексом' + ' ' + middle
+							return middle
+
 						}
 
 						if (arr[middle] > searchEl) {
@@ -62,7 +63,10 @@
 					return binarySearch(0, arr.length - 1)
 				}
 
-				document.write(getSearchEl(arr, userFigure))
+				let res = getSearchEl(arr, userFigure)
+				res === false
+					? document.write('Такого числа немає')
+					: document.write(`Таке число є під індексом ${res}`)
 
 			</script>
 		</div>
