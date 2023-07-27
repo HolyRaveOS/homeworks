@@ -34,13 +34,12 @@
 			</nav>
 			<script>
 
-				let firstFigure
-				let secondFigure
+
 				let userRange = parseInt(prompt('Введіть у якому діапазоні чисел ви бажаєте практикуватись'))
 
-				function createSimulator(firstFigure, secondFigure) {
-					firstFigure = Math.floor(Math.random() * userRange) + 1
-					secondFigure = Math.floor(Math.random() * userRange) + 1
+				function createSimulator(userRange) {
+					let firstFigure = Math.floor(Math.random() * userRange) + 1
+					let secondFigure = Math.floor(Math.random() * userRange) + 1
 					let sum = 0
 					let userAnswer = parseInt(prompt(`Скільки буде ${firstFigure} + ${secondFigure}`))
 					sum = firstFigure + secondFigure
@@ -51,7 +50,7 @@
 
 				function timeOut() {
 					setTimeout(() => {
-						createSimulator(firstFigure, secondFigure)
+						createSimulator(userRange)
 						timeOut()
 					}, 10000)
 				}

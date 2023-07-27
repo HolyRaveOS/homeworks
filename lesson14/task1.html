@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 1</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №14
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task1
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let websites = [
+					{
+						name: 'EPAM',
+						owner: 'Arkadiy Dobkin',
+						sponsors: [
+							{
+								name: 'Michael',
+								surname: 'Johnson',
+								contribution: 30000,
+							},
+							{
+								name: 'Jennifer',
+								surname: 'Smith',
+								contribution: 40000,
+							},
+							{
+								name: 'Christopher',
+								surname: 'Williams',
+								contribution: 30000,
+							}
+						],
+						year: 1993,
+						siteCost: 150000,
+					},
+					{
+						name: 'SoftServe',
+						owner: 'Christopher Baker',
+						sponsors: [
+							{
+								name: 'James',
+								surname: 'Anderson',
+								contribution: 3000,
+							},
+							{
+								name: 'Emily',
+								surname: 'Brown',
+								contribution: 2500,
+							},
+							{
+								name: 'Sophia',
+								surname: 'Davis',
+								contribution: 1500,
+							}
+						],
+						year: 2001,
+						siteCost: 9000,
+					},
+					{
+						name: 'GlobalLogic',
+						owner: 'Nitesh Banga',
+						sponsors: [
+							{
+								name: 'Carlos',
+								surname: 'Garcia',
+								contribution: 45000,
+							},
+							{
+								name: 'Isabella',
+								surname: 'Martinez',
+								contribution: 32000,
+							},
+							{
+								name: 'Luis',
+								surname: 'Hernandez',
+								contribution: 28000,
+							}
+						],
+						year: 2015,
+						siteCost: 120000,
+					},
+					{
+						name: 'Luxoft',
+						owner: 'Dmitry Loschinin',
+						sponsors: [
+							{
+								name: 'John',
+								surname: 'Wilson',
+								contribution: 5000,
+							},
+							{
+								name: 'Emma',
+								surname: 'Taylor',
+								contribution: 2000,
+							},
+							{
+								name: 'Martin',
+								surname: 'Oliver',
+								contribution: 2000,
+							}
+						],
+						year: 2000,
+						siteCost: 9500,
+					},
+					{
+						name: 'Ciklum',
+						owner: 'Rajaram Radhakrishnan',
+						sponsors: [
+							{
+								name: 'Andrew',
+								surname: 'Peterson',
+								contribution: 52000,
+							},
+							{
+								name: 'Sophia',
+								surname: 'Anderson',
+								contribution: 39000,
+							},
+							{
+								name: 'Daniel',
+								surname: 'Williams',
+								contribution: 28000,
+							}
+						],
+						year: 2009,
+						siteCost: 130000,
+					},
+				]
+
+				//1) загальну вартість усіх сайтів
+
+				let getTotalSitesPrice = (websites) => {
+					let totalPrice = websites.reduce((prevSum, sitePrice) =>
+						prevSum + sitePrice.siteCost, 0
+					)
+					return totalPrice
+				}
+				//==========================================
+				//2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+				let getNumOfSitesWithin2000And2009 = (websites) => {
+					let sitesCounter = websites.reduce((prevCount, site) =>
+						site.year >= 2000 && site.year <= 2009
+							? prevCount += 1
+							: prevCount, 0
+					)
+					return sitesCounter
+				}
+				//==========================================
+				//3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+				let getNumOfSitesWithContributionBiggerThan100000 = (websites) => {
+					let sitesCounter = 0
+					websites.forEach(site => {
+						let totalContribution = site.sponsors.reduce((prevSum, sponsor) =>
+							prevSum + sponsor.contribution, 0
+						)
+						if (totalContribution > 100000) {
+							sitesCounter++
+						}
+					});
+					return sitesCounter
+				}
+				//==========================================
+				// 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+
+				let getAllSponsors = (websites) => {
+					let sitesCounter = []
+					websites.forEach(site => {
+						site.sponsors.map((sponsor) =>
+							sitesCounter.push({
+								sponsorName: sponsor.name,
+								sponsorSurname: sponsor.name
+							})
+						)
+					});
+					return sitesCounter
+				}
+				//==========================================
+
+				//5) знайти рік, коли прибуток був найбільшим
+
+				let getYearWIthMaxProfit = (websites) => {
+					let max = 0
+					let yearWithMaxProfit
+					for (let i = 0; i < websites.length; i++) {
+						if (max < websites[i].siteCost) {
+							max = websites[i].siteCost
+							yearWithMaxProfit = websites[i].year
+						}
+					}
+					return yearWithMaxProfit
+				}
+
+				// 6) упорядкувати список за спаданням прибутку
+
+				function swap(arr, a, b) {
+					let temp = arr[a]
+					arr[a] = arr[b]
+					arr[b] = temp
+				}
+
+				let sortSitesAccordingToDecreaseInProfit = (websites) => {
+					let profitArr = []
+					for (let i = 0; i < websites.length; i++) {
+						profitArr.push(websites[i].siteCost)
+					}
+					for (let i = 0; i < profitArr.length; i++) {
+						let minIndex = i
+						for (let j = i + 1; j < profitArr.length; j++) {
+							if (profitArr[j] > profitArr[minIndex]) {
+								minIndex = j
+							}
+						}
+						if (i !== minIndex) {
+							swap(profitArr, i, minIndex)
+							swap(websites, i, minIndex)
+						}
+					}
+					return websites
+				}
+
+				//==========================================
+
+				// 7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+
+				let createSiteListWithProfitLowerThan10000 = (websites) => {
+					let lowProfitSitesListArr = websites.filter(site => site.siteCost < 10000)
+					return lowProfitSitesList = JSON.parse(JSON.stringify(lowProfitSitesListArr))
+				}
+
+				let createSiteListWithProfitHigherThan10000 = (websites) => {
+					let highProfitSitesListArr = websites.filter(site => site.siteCost > 10000)
+					return highProfitSitesList = JSON.parse(JSON.stringify(highProfitSitesListArr))
+				}
+
+				document.write(`
+Загальна вартість усіх сайтів = ${getTotalSitesPrice(websites)}<br>
+Кількість сайтів, що було зроблено між 2000 та 2009 рр. = ${getNumOfSitesWithin2000And2009(websites)}<br>
+кількість сайтів, де сума спонсорських вкладень була більшою за 100000 = ${getNumOfSitesWithContributionBiggerThan100000(websites)}<br>
+Загальний список усіх спонсорів = В консолі <br>
+Рік, коли прибуток був найбільшим = ${getYearWIthMaxProfit(websites)}<br>
+Cписок за спаданням прибутку = В консолі <br>
+Копія сайтів що містять сайти з вартістю до 10000 = В Консолі <br>
+Копія сайтів що містять сайти з вартістю більше 10000 = В Консолі
+`)
+				console.log(getAllSponsors(websites));
+				console.log(sortSitesAccordingToDecreaseInProfit(websites));
+				console.log(createSiteListWithProfitLowerThan10000(websites));
+				console.log(createSiteListWithProfitHigherThan10000(websites));
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

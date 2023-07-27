@@ -149,7 +149,7 @@
 
 				// 8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
 
-				let func = (table) => {
+				let getSortByTheBiggestELInRow = (table) => {
 					maxArr = table.map((row) => Math.max(...row))
 					let currentElement, prevEl, currentElement1, prevEl1
 					for (let i = 1; i < maxArr.length; i++) {
@@ -169,6 +169,28 @@
 					return table.join('<br>')
 				}
 
+				// 9) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+
+				let getSortByTheBiggestSumInRow = (table) => {
+					let totalWekSumRow = table.map((row) => row.reduce((prevEl, el) => prevEl + el, 0))
+					let currentElement, prevEl, currentElement1, prevEl1
+					for (let i = 1; i < totalWekSumRow.length; i++) {
+						currentElement = totalWekSumRow[i]
+						currentElement1 = table[i]
+						prevEl = i - 1
+						prevEl1 = i - 1
+						while (prevEl >= 0 && totalWekSumRow[prevEl] < currentElement) {
+							totalWekSumRow[prevEl + 1] = totalWekSumRow[prevEl]
+							table[prevEl1 + 1] = table[prevEl1]
+							prevEl -= 1
+							prevEl1 -= 1
+						}
+						totalWekSumRow[prevEl + 1] = currentElement
+						table[prevEl1 + 1] = currentElement1
+					}
+					return table.join('<br>')
+				}
+
 				document.write(`
 				МАСИВ <br><br>${tableForDocumentWrite}<br><br>
 				Загальний прибуток кожного масиву за тиждень = ${getTotalIncomeForWeek(table)}<br><br>
@@ -178,7 +200,8 @@
 				Максимальний прибуток за середу = ${getMaxIncomeForWednesday(table)}<br><br>
 				Одновимірний масив зі значенням, які що більші за 200 = ${getBiggerThan200(table)}<br><br>
 				Кожен тиждень за зростанням = <br> ${sortWeeksByIncrease(table)}<br><br>
-				Тижні (рядки) за спаданням максимального елементи у цьому тижні = <br> ${func(table)}<br>
+				Тижні (рядки) за спаданням максимального елементи у цьому тижні = <br> ${getSortByTheBiggestELInRow(table)}<br>
+				Тижні (рядки) за спаданням суми елементів у рядку = <br> ${getSortByTheBiggestSumInRow(table)}<br>
 				`)
 
 			</script>
