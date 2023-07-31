@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 1</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №15
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task1
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let userFieldLength = parseInt(prompt('Введіть кількіть полів'))
+				let userRabbitsNum = parseInt(prompt('Введіть кількість зайців'))
+				let userShot = parseInt(prompt('Введіть кількість пострілв'))
+
+				class ShootingGallery {
+					constructor(fieldLength) {
+						this.field = new Array(fieldLength).fill(0)
+					}
+
+					generateRabbits(rabbitsNum) {
+						let maxValue = this.field.length
+						for (let i = 0; i < rabbitsNum;) {
+							let randIndex = Math.floor(Math.random() * (maxValue + 1))
+							if (this.field[randIndex] === 0) {
+								this.field[randIndex] = 1
+								i++
+							}
+						}
+						this.rabbitsNum = rabbitsNum
+					}
+
+					shot(shotNum) {
+						while (shotNum > 0) {
+							let userShot = parseInt(prompt(`Введіть номер поля по якому булемо стріляти від 0 до ${this.field.length}`))
+							shotNum--
+							this.showResult(userShot, shotNum)
+							if (this.rabbitsNum === 0) {
+								return alert('Усі зайці збиті')
+							}
+						}
+					}
+
+					showResult(userShot, shotNum) {
+						if (this.field[userShot] === 1) {
+							this.rabbitsNum--
+							alert(`Ви влучили кількість пострілів = ${shotNum} кількість зайців на полі = ${this.rabbitsNum}`)
+						} else (alert(`Ви промахнулися пострілів = ${shotNum} кількість зайців на полі = ${this.rabbitsNum}`))
+					}
+				}
+
+				let shootingGallery = new ShootingGallery(userFieldLength)
+				shootingGallery.generateRabbits(userRabbitsNum)
+				shootingGallery.shot(userShot)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task5</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 5</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №15
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task5
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				class HeadOfDances {
+					constructor(girlsArr, boysArr) {
+						this.girlsArr = girlsArr
+						this.boysArr = boysArr
+					}
+
+					getRandomName(gender) {
+						let max = gender.length
+						let randIndex = Math.floor(Math.random() * max)
+						return gender[randIndex]
+					}
+
+					createPair() {
+						return `${this.getRandomName(this.girlsArr)},${this.getRandomName(this.boysArr)}`
+					}
+
+					run() {
+						setTimeout(() => {
+							alert(this.createPair())
+							this.run()
+						}, 5000);
+					}
+				}
+
+				let headOfDances = new HeadOfDances(
+					['Olga', 'Tanya', 'Elena', 'Maria', 'Oksana', 'Victoria'],
+					['Oleg', 'Igor', 'Andrew', 'Ruslan', 'Mykhailo', 'Arthur']
+				)
+
+				headOfDances.run()
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task0</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 0</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №15
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task0
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let product1 = {
+					prices: [12, 3242, 23, 1, 2, 21, 12, 23, 12, 321, 35, 15],
+					getSum: function () {
+						let sum = 0
+						for (let i = 0; i < this.prices.length; i++) {
+							sum += this.prices[i]
+						}
+						return sum
+					}
+				}
+
+				let product2 = {
+					prices: [22, 432, 33, 21, 12, 31, 23, 33, 25, 35, 15, 18],
+					getProduct: function (start, end) {
+						let product = this.prices.reduce((prevProd, element) =>
+							element > start && element < end
+								? prevProd * element
+								: prevProd
+						)
+						return product
+					}
+				}
+
+				product1.getProduct = product2.getProduct
+				product2.getSum = product1.getSum
+
+				document.write(`
+				Cума масива 1 обєкта = ${product1.getSum()}<br>
+				Добуток між заданими мінімальним і максимальних значенням (10, 30) 2 обєкта = ${product2.getProduct(10, 30)}<br>
+				Метод Call сума масива 2 обєкта = ${product1.getSum.call(product2)}<br>
+				Метод Call добуток масива між заданими мінімальним і максимальних значенням (10, 30) 1 обєкта  = ${product2.getProduct.call(product1, 10, 30)}<br>
+				Метод apply сума масива 2 обєкта ${product2.getSum()}<br>
+				Метод apply добуток масива між заданими мінімальним і максимальних значенням (10, 30) 1 обєкта = ${product1.getProduct(10, 30)}
+				`);
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

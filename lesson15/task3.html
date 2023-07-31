@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="container">
+			<h1 class="main-title">Задача 3</h1>
+			<nav class="breadcrumbs">
+				<ul class="breadcrumbs__list">
+					<li class="breadcrumbs__item">
+						<a class="breadcrumbs__link" href="../index.html">
+							Головна
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<a href="./index.html" class="breadcrumbs__link">
+							ДЗ №15
+						</a>
+					</li>
+					<li class="breadcrumbs__item">
+						<span class="breadcrumbs__link breadcrumbs__link_active">
+							Task3
+						</span>
+					</li>
+				</ul>
+			</nav>
+			<script>
+
+				let userFigureForCheck = parseInt(prompt('Введіть число для перевірки частини таблиці'))
+
+				let userExamplesAmount = parseInt(prompt('Введіть кількість прикладів'))
+
+				class MultiChecker {
+					constructor(figureForCheck, correctAnswers, wrongAnswers) {
+						this.figureForCheck = figureForCheck
+						this.correctAnswers = correctAnswers
+						this.wrongAnswers = wrongAnswers
+					}
+
+					generateExample() {
+						let randomNum = Math.floor(Math.random() * 8 + 2)
+						return randomNum
+					}
+
+					checkAnswer() {
+						let secondNum = this.generateExample()
+						let answer = parseInt(prompt(`${this.figureForCheck} * ${secondNum}`))
+						this.figureForCheck * secondNum === answer
+							? this.correctAnswers += 1
+							: this.wrongAnswers += 1
+					}
+
+					showResults() {
+						return document.write(`
+					Кількість правильних відповідей = ${this.correctAnswers}<br>
+					Кількість неправильних відповідей = ${this.wrongAnswers}<br>
+					`)
+					}
+				}
+
+				let multiChecker = new MultiChecker(userFigureForCheck, 0, 0)
+
+				function startMultiChecker() {
+					for (let i = 0; i < userExamplesAmount; i++) {
+						multiChecker.generateExample()
+						multiChecker.checkAnswer()
+					}
+					multiChecker.showResults()
+				}
+
+				startMultiChecker()
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
