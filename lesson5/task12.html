@@ -1,111 +1,107 @@
 <!DOCTYPE html>
 <html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task12</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="./lesson5.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Task12</title>
-	<link rel="stylesheet" href="../css/style.css">
-	<link rel="stylesheet" href="./lesson5.css">
-</head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 12</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №5 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task12
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          const randomImg1 = Math.floor(Math.random() * 4) + 1
+          let img1 = `<img src="./task12img/1.png" alt="Вишня" width="70" height="60">`
+          let img2 = `<img src="./task12img/2.png" alt="Вишня" width="70" height="60">`
+          let img3 = `<img src="./task12img/3.png" alt="Вишня" width="70" height="60">`
+          let img4 = `<img src="./task12img/4.png" alt="Вишня" width="70" height="60">`
 
-<body>
-	<div class="wrapper">
-		<div class="container">
-			<h1 class="main-title">Задача 12</h1>
-			<nav class="breadcrumbs">
-				<ul class="breadcrumbs__list">
-					<li class="breadcrumbs__item">
-						<a class="breadcrumbs__link" href="../index.html">
-							Головна
-						</a>
-					</li>
-					<li class="breadcrumbs__item">
-						<a href="./index.html" class="breadcrumbs__link">
-							ДЗ №5
-						</a>
-					</li>
-					<li class="breadcrumbs__item">
-						<span class="breadcrumbs__link breadcrumbs__link_active">
-							Task12
-						</span>
-					</li>
-				</ul>
-			</nav>
-			<script>
-				const randomImg1 = Math.floor(Math.random() * 4) + 1
-				let img1 = (`<img src="./task12img/1.png" alt="Вишня" width="70" height="60">`)
-				let img2 = (`<img src="./task12img/2.png" alt="Вишня" width="70" height="60">`)
-				let img3 = (`<img src="./task12img/3.png" alt="Вишня" width="70" height="60">`)
-				let img4 = (`<img src="./task12img/4.png" alt="Вишня" width="70" height="60">`)
+          let counter1 = 0
+          let counter2 = 0
+          let counter3 = 0
+          let counter4 = 0
 
-				let counter1 = 0
-				let counter2 = 0
-				let counter3 = 0
-				let counter4 = 0
+          function reloadPage() {
+            location.reload()
+          }
 
-				function reloadPage() {
-					location.reload();
-				}
+          document.write('<div class="task12table">')
+          document.write('<table border="2px">')
 
-				document.write('<div class="task12table">')
-				document.write('<table border="2px">')
+          for (let i = 0; i < 3; i++) {
+            let randomImg1 = Math.floor(Math.random() * 4) + 1
+            let res
+            switch (randomImg1) {
+              case 1:
+                res =
+                  img1 = `<img src="./task12img/1.png" alt="Вишня" width="70" height="60">`
+                break
+              case 2:
+                res =
+                  img2 = `<img src="./task12img/2.png" alt="Лимон" width="70" height="60">`
+                break
+              case 3:
+                res =
+                  img3 = `<img src="./task12img/3.png" alt="Виноград" width="70" height="60">`
+                break
+              case 4:
+                res =
+                  img4 = `<img src="./task12img/4.png" alt="Сімка" width="70" height="60">`
+                break
 
-				for (let i = 0; i < 3; i++) {
-					let randomImg1 = Math.floor(Math.random() * 4) + 1
-					let res
-					switch (randomImg1) {
-						case 1:
-							res = img1 = (`<img src="./task12img/1.png" alt="Вишня" width="70" height="60">`)
-							break;
-						case 2:
-							res = img2 = (`<img src="./task12img/2.png" alt="Лимон" width="70" height="60">`)
-							break;
-						case 3:
-							res = img3 = (`<img src="./task12img/3.png" alt="Виноград" width="70" height="60">`)
-							break;
-						case 4:
-							res = img4 = (`<img src="./task12img/4.png" alt="Сімка" width="70" height="60">`)
-							break;
+              default:
+                break
+            }
+            if (randomImg1 === 1) {
+              counter1++
+            }
+            if (randomImg1 === 2) {
+              counter2++
+            }
+            if (randomImg1 === 3) {
+              counter3++
+            }
+            if (randomImg1 === 4) {
+              counter4++
+            }
 
-						default:
-							break;
-					}
-					if (randomImg1 === 1) {
-						counter1++
-					}
-					if (randomImg1 === 2) {
-						counter2++
-					}
-					if (randomImg1 === 3) {
-						counter3++
-					}
-					if (randomImg1 === 4) {
-						counter4++
-					}
+            document.write('<tr">')
+            for (let j = 0; j < 1; j++) {
+              document.write(`<td> ${res} </td>`)
+            }
+            document.write('</tr>')
+          }
 
-					document.write('<tr">')
-					for (let j = 0; j < 1; j++) {
-						document.write(`<td> ${res} </td>`)
-					}
-					document.write('</tr>')
-				}
-
-				if (counter1 === 3)
-					document.write('Ви виграли 100грн')
-				if (counter2 === 3)
-					document.write('Ви виграли 200грн')
-				if (counter3 === 3)
-					document.write('Ви виграли 500грн')
-				if (counter4 === 3)
-					document.write('Ви виграли 1000грн')
-				document.write('</table>')
-				document.write(`<button class="task12button" onclick="reloadPage()">Крутити барабан</button>`)
-				document.write('</div>')
-			</script>
-		</div>
-	</div>
-</body>
-
+          if (counter1 === 3) document.write('Ви виграли 100грн')
+          if (counter2 === 3) document.write('Ви виграли 200грн')
+          if (counter3 === 3) document.write('Ви виграли 500грн')
+          if (counter4 === 3) document.write('Ви виграли 1000грн')
+          document.write('</table>')
+          document.write(
+            `<button class="blue-btn" onclick="reloadPage()">Крутити барабан</button>`
+          )
+          document.write('</div>')
+        </script>
+      </div>
+    </div>
+  </body>
 </html>

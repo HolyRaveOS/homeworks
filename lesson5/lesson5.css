@@ -25,17 +25,7 @@
 .task12table tbody {
   display: flex;
 }
-.task12button {
-  border: none;
-  background-color: #354aa8;
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+
 .task12button:hover {
   background-color: #263a93;
 }

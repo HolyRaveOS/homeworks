@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 3</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №16 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task3
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Firm {
+            constructor(title, date, services, address) {
+              this.title = title
+              this.date = date
+              this.services = services
+              this.address = address
+            }
+
+            getFirmYears() {
+              let currentYear = 2023
+              let firmYears = currentYear - this.date.year
+              return firmYears
+            }
+
+            getFilialNum(name) {
+              return this.address.filter((address) => address.city === name)
+            }
+
+            getServicesList(money, terms) {
+              if (money <= 0 || terms <= 0)
+                throw new Error('Некоректне чосло (має бути більше 0)')
+              return this.services.filter(
+                (service) => service.price <= money && service.terms <= terms
+              )
+            }
+
+            toString() {
+              return `
+							Назва компанії : ${this.title}<br>
+							Започаткована в : ${this.date.year} році,${this.date.month} місяці<br>
+							`
+            }
+          }
+
+          let firm = new Firm(
+            'autoseelect',
+            {
+              year: 1997,
+              month: 10,
+            },
+            [
+              {
+                title: 'Car selection',
+                price: 19000,
+                terms: 30,
+              },
+              {
+                title: 'On-site inspection',
+                price: 1400,
+                terms: 1,
+              },
+              {
+                title: 'Expert for the day',
+                price: 4000,
+                terms: 1,
+              },
+              {
+                title: 'Pre-sale evaluation',
+                price: 900,
+                terms: 1,
+              },
+            ],
+            [
+              {
+                country: 'Ukraine',
+                city: 'Kyiv',
+                street: ' Лугова 9, Оболонь',
+                houseNum: 12,
+              },
+              {
+                country: 'Ukraine',
+                city: 'Kyiv',
+                street: ' Лугова 3, Оболонь',
+                houseNum: 10,
+              },
+              {
+                country: 'Ukraine',
+                city: 'Kyiv',
+                street: ' Лугова 1, Оболонь',
+                houseNum: 8,
+              },
+              {
+                country: 'Ukraine',
+                city: 'Lviv',
+                street: 'Малі Кривчиці',
+                houseNum: 15,
+              },
+              {
+                country: 'Ukraine',
+                city: 'Lviv',
+                street: 'Малі Кривчиці',
+                houseNum: 10,
+              },
+              {
+                country: 'Ukraine',
+                city: 'Lviv',
+                street: 'Малі Кривчиці',
+                houseNum: 8,
+              },
+            ]
+          )
+
+          let userFilialAddress = prompt(
+            'Наші філіали розташовуються у містах Lviv і Kyiv напишіть одне з них щоб получити список філіалів у цьому місті'
+          )
+
+          let userSum = parseInt(prompt('Вкажіть на яку суму шукати послуги'))
+          let userTerms = parseInt(
+            prompt('Вкажіть термін по якому шукати послуги')
+          )
+
+          document.write(`
+          ${firm}<br>
+          компанія на ринку ${firm.getFirmYears()} років <br>
+					Список міст у консолі <br>
+					Список послуг у консолі
+          `)
+
+          console.log(firm.getFilialNum(userFilialAddress))
+          console.log(firm.getServicesList(userSum, userTerms))
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

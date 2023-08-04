@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 1</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №16 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task1
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class TDate {
+            #day
+            #month
+            #year
+
+            constructor(day, month, year) {
+              this.Day = day
+              this.Month = month
+              this.Year = year
+              if (!this.isValid()) {
+                throw new Error('Некоректне значення')
+              }
+            }
+
+            isValid() {
+              if (
+                this.Year < 1 ||
+                this.Month < 1 ||
+                this.Month > 12 ||
+                this.Day < 1 ||
+                this.Day > this.getDaysInMonth()
+              ) {
+                return false
+              }
+              return true
+            }
+
+            get Day() {
+              return this.#day
+            }
+
+            set Day(value) {
+              if (value < 1)
+                throw new Error('Некоректне число (має бути більше 0)')
+              this.#day = value
+            }
+
+            get Month() {
+              return this.#month
+            }
+
+            set Month(value) {
+              if (value < 1)
+                throw new Error('Некоректне число (має бути більше 0)')
+              this.#month = value
+            }
+
+            get Year() {
+              return this.#year
+            }
+
+            set Year(value) {
+              if (value < 1)
+                throw new Error('Некоректне число (має бути більше 0)')
+              this.#year = value
+            }
+
+            getDaysInMonth() {
+              const daysInMonth = [
+                31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
+              ]
+              if (this.isLeapYear() && this.Month === 2) {
+                return 29
+              }
+              return daysInMonth[this.Month - 1]
+            }
+
+            isLeapYear() {
+              return (
+                (this.Year % 4 === 0 && this.Year % 100 !== 0) ||
+                this.Year % 400 === 0
+              )
+            }
+
+            decreaseYear() {
+              this.Year--
+            }
+            decreaseYears(value) {
+              this.Year -= value
+            }
+
+            decreaseMonth() {
+              if (this.Month === 1) {
+                this.Month = 12
+                this.decreaseYear()
+              } else {
+                this.Month--
+              }
+            }
+
+            decreaseMonths(value) {
+              while (value > 0) {
+                this.decreaseMonth()
+                value--
+              }
+            }
+
+            decreaseDay() {
+              if (this.Day === 1) {
+                this.decreaseMonth()
+                this.Day = this.getDaysInMonth()
+              } else {
+                this.Day--
+              }
+            }
+
+            decreaseDays(value) {
+              while (value > 0) {
+                this.decreaseDay()
+                value--
+              }
+            }
+
+            increaseYear() {
+              this.Year++
+            }
+            increaseYears(value) {
+              this.Year += value
+            }
+
+            increaseMonth() {
+              if (this.Month === 12) {
+                this.Month = 1
+                this.increaseYear()
+              } else {
+                this.Month++
+              }
+            }
+
+            increaseMonths(value) {
+              while (value > 0) {
+                this.increaseMonth()
+                value--
+              }
+            }
+
+            increaseDay() {
+              if (this.Day === this.getDaysInMonth()) {
+                this.increaseMonth()
+                this.Day = 1
+              } else {
+                this.Day++
+              }
+            }
+
+            increaseDays(value) {
+              while (value > 0) {
+                this.increaseDay()
+                value--
+              }
+            }
+
+            toString() {
+              return `${this.Day}.${this.Month}.${this.Year}`
+            }
+          }
+
+          const userDay = parseInt(prompt('Введіть номер дня'))
+          const userMonth = parseInt(prompt('Введіть номер місяця'))
+          const userYear = parseInt(prompt('Введіть номер року'))
+
+          const date = new TDate(10, 10, 2023)
+          document.write(date + '<br>')
+          let increaseUserConfirm
+          setTimeout(() => {
+            increaseUserConfirm = confirm('Бажаєте збільнити дату')
+            if (increaseUserConfirm === true) {
+              const userDayIncrease = parseInt(
+                prompt('Введіть на яку кількість днів збільшити')
+              )
+              const userMonthIncrease = parseInt(
+                prompt('Введіть на яку кількість місяців збільшити')
+              )
+              const userYearIncrease = parseInt(
+                prompt('Введіть на яку кількість років збільшити')
+              )
+              date.increaseDays(userDayIncrease)
+              date.increaseMonths(userMonthIncrease)
+              date.increaseYears(userYearIncrease)
+              document.write(date + '<br>')
+            }
+          }, 3000)
+
+          let decreaseUserConfirm
+          setTimeout(() => {
+            decreaseUserConfirm = confirm('Бажаєте зменшити дату')
+            if (decreaseUserConfirm === true) {
+              const userDayDecrease = parseInt(
+                prompt('Введіть на яку кількість днів зменшити')
+              )
+              const userMonthDecrease = parseInt(
+                prompt('Введіть на яку кількість місяців зменшити')
+              )
+              const userYearDecrease = parseInt(
+                prompt('Введіть на яку кількість років зменшити')
+              )
+              date.decreaseDays(userDayDecrease)
+              date.decreaseMonths(userMonthDecrease)
+              date.decreaseYears(userYearDecrease)
+              document.write(date + '<br>')
+            }
+          }, 3000)
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
