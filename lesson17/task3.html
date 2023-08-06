@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 3</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №17 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task3
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Remainder {
+            static #isCreated
+            constructor(interval, message) {
+              if (Remainder.#isCreated) return Remainder.#isCreated
+              this.interval = interval * 1000
+              this.message = message
+              this.counter = 0
+              this.toggleInterval = null
+              Remainder.#isCreated = this
+            }
+
+            startRemainder() {
+              if (this.interval > 0) {
+                this.toggleInterval = setInterval(() => {
+                  this.counter++
+                  document.write(`${this.counter} ${this.message}<br>`)
+                }, this.interval)
+              } else {
+                throw new Error('Некоректні дані інтервалу')
+              }
+            }
+
+            stopRemainder() {
+              clearInterval(this.toggleInterval)
+            }
+
+            changeMessage(message) {
+              this.message = message
+            }
+          }
+
+          let userIntervalTime = parseInt(
+            prompt('Введіть частоту нагадування в секундах')
+          )
+          let userMessage1 = prompt('Введіть 1 повідомлення')
+          let userMessage2 = prompt('Введіть 2 повідомлення')
+
+          let remainder = new Remainder(userIntervalTime, userMessage1)
+          remainder.startRemainder()
+
+          setTimeout(() => {
+            remainder.changeMessage(userMessage2)
+          }, 10000)
+
+          setTimeout(() => {
+            remainder.stopRemainder()
+          }, 20000)
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

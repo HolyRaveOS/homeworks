@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 1</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №17 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task1
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Methods {
+            static getPositiveNum(arr) {
+              return arr.filter((el) => el > 0).length
+            }
+            static getNegativeNum(arr) {
+              return arr.filter((el) => el < 0).length
+            }
+            static countOccurrences(array, target) {
+              return array.filter((num) => num === target).length
+            }
+          }
+
+          arr = [-14, 12, -13, 21, 23, 12, -10, 10]
+
+          document.write(`
+					Масив = ${arr}<br><br>
+					Кількість додатніх = ${Methods.getPositiveNum(arr)}<br><br>
+					Кількість відємних = ${Methods.getNegativeNum(arr)}<br><br>
+					Кількість входжень числа 12 = ${Methods.countOccurrences(arr, 12)}
+					`)
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

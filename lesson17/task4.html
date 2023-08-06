@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task4</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 4</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №17 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task4
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Library {
+            constructor(title, initBooksList) {
+              this.title = title
+              this.booksList = initBooksList
+            }
+            addBook(book) {
+              this.booksList.push(book)
+            }
+            removeBook(name) {
+              this.booksList = this.booksList.filter(
+                (book) => book.bookName !== name
+              )
+            }
+            findBooksByName(name) {
+              return this.booksList.filter((book) => book.bookName === name)
+            }
+            findBooksByAuthor(name, surname) {
+              return this.booksList.filter(
+                (book) =>
+                  book.author.authorName === name &&
+                  book.author.authorSurname === surname
+              )
+            }
+            findBooksByPublisher(title) {
+              return this.booksList.filter(
+                (book) => book.publisher.publisherTitle === title
+              )
+            }
+          }
+
+          class Author {
+            constructor({ authorName, authorSurname, birthYear, description }) {
+              this.authorName = authorName
+              this.authorSurname = authorSurname
+              this.birthYear = birthYear
+              this.description = description
+            }
+          }
+
+          class Publisher {
+            constructor({ publisherTitle, registrationNumber, foundingYear }) {
+              this.publisherTitle = publisherTitle
+              this.registrationNumber = registrationNumber
+              this.foundingYear = foundingYear
+            }
+          }
+
+          class Book {
+            constructor(initData) {
+              this.author = new Author(initData)
+              this.publisher = new Publisher(initData)
+              this.bookName = initData.bookName
+              this.genre = initData.genre
+            }
+          }
+
+          let booksList = [
+            new Book({
+              authorName: 'Роберт',
+              authorSurname: 'Сапольски',
+              birthYear: 1957,
+              description: 'Біолог та автор популярних наукових книг',
+              bookName: 'Біологія добра і зла',
+              genre: 'Популярна наука',
+              publisherTitle: 'Наукова Майстерня',
+              registrationNumber: 'NM123',
+              foundingYear: 1980,
+            }),
+            new Book({
+              authorName: 'Джордан',
+              authorSurname: 'Пітерсон',
+              birthYear: 1962,
+              description: 'Психолог та публічний діяч',
+              bookName: '12 правил Життя',
+              genre: 'Психологія',
+              publisherTitle: 'Життя й Психологія',
+              registrationNumber: 'LP456',
+              foundingYear: 1998,
+            }),
+            new Book({
+              authorName: 'Марк',
+              authorSurname: 'Менсон',
+              birthYear: 1984,
+              description: 'Письменник та блогер',
+              bookName: 'Мистецтво Пофігізму',
+              genre: 'Саморозвиток',
+              publisherTitle: 'Свобода Мислення',
+              registrationNumber: 'SF789',
+              foundingYear: 2005,
+            }),
+            new Book({
+              authorName: 'Анджей',
+              authorSurname: 'Сапковський',
+              birthYear: 1948,
+              description: 'Польський письменник та фантаст',
+              bookName: 'Відьмак',
+              genre: 'Фентезі',
+              publisherTitle: 'Магічний Світ',
+              registrationNumber: 'MS101',
+              foundingYear: 1975,
+            }),
+          ]
+
+          let library = new Library('The best library', booksList)
+          console.log(library)
+          library.addBook(
+            new Book({
+              authorName: 'Малкольм',
+              authorSurname: 'Гладуелл',
+              birthYear: 1963,
+              description: 'Автор та журналіст',
+              bookName: 'Генії і аутсайдери',
+              genre: 'Популярна психологія',
+              publisherTitle: 'Інтелектуальний Видавець',
+              registrationNumber: 'IV202',
+              foundingYear: 1992,
+            })
+          )
+          console.log(library)
+          library.removeBook('Генії і аутсайдери')
+          console.log(library)
+          console.log(library.findBooksByName('Відьмак'))
+          console.log(library.findBooksByAuthor('Джордан', 'Пітерсон'))
+          console.log(library.findBooksByPublisher('Наукова Майстерня'))
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
