@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task2</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 2</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №18 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task2
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="converter">
+          <label class="converter__label">
+            Сума в гривнях
+            <input class="converter__input grn" type="text" placeholder="0" />
+          </label>
+          <button
+            class="converter__btn blue-btn convert"
+            style="display: block"
+          >
+            Конвертувати
+          </button>
+          <br />
+          <hr />
+          <br />
+          <label class="converter__label" style="display: block">
+            Сума в євро
+            <input class="converter__input euro" type="text" value="0" />
+          </label>
+          <label class="converter__label">
+            Сума в доларах
+            <input class="converter__input dollar" type="text" value="0" />
+          </label>
+        </div>
+        <script>
+          function converter() {
+            const euroRate = 40
+            const dollarRate = 37
+            const GRN = parseFloat(document.querySelector('.grn').value)
+            const sumInEuro = GRN / euroRate
+            const sumInDollar = GRN / dollarRate
+            document.querySelector('.euro').value = sumInEuro.toFixed(2)
+            document.querySelector('.dollar').value = sumInDollar.toFixed(2)
+          }
+
+          window.onload = function () {
+            document.querySelector('.convert').onclick = converter
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

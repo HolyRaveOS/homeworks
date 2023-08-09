@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task4</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 4</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №18 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task4
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="wishes"></div>
+        <script>
+          function getUniqElement(arr, count) {
+            const uniqueIndexes = new Set()
+            while (uniqueIndexes.size < count) {
+              const randomIndex = Math.floor(Math.random() * arr.length)
+              uniqueIndexes.add(randomIndex)
+            }
+
+            return Array.from(uniqueIndexes).map((index) => arr[index])
+          }
+
+          window.onload = function getWishes() {
+            let wishesArr = [
+              'wish1',
+              'wish2',
+              'wish3',
+              'wish4',
+              'wish5',
+              'wish6',
+              'wish7',
+              'wish8',
+            ]
+
+            let parentDiv = document.querySelector('.wishes')
+            let uniqEl = getUniqElement(wishesArr, 3)
+
+            for (let j = 0; j < 3; j++) {
+              let divArr = document.createElement('div')
+              parentDiv.append(divArr)
+              divArr.innerText = uniqEl[j]
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

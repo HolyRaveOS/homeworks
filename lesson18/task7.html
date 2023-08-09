@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task7</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 7</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №3 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task7
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="travel">
+          <div class="travel__wrapper">
+            <div class="step">
+              <h2>Етап 1</h2>
+              <select class="step__select">
+                <option class="step__option" value="500">авто</option>
+                <option class="step__option" value="200">автобус</option>
+                <option class="step__option" value="1000">літак</option>
+              </select>
+              <div class="box">
+                <label class="step__label">
+                  сніданок
+                  <input class="step__input" type="checkbox" value="200" />
+                </label>
+                <label class="step__label">
+                  обід
+                  <input class="step__input" type="checkbox" value="300" />
+                </label>
+                <label class="step__label">
+                  вечеря
+                  <input class="step__input" type="checkbox" value="250" />
+                </label>
+                <label class="step__label">
+                  гід 1
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid"
+                    value="300"
+                  />
+                </label>
+                <label class="step__label">
+                  гід 2
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid"
+                    value="450"
+                  />
+                </label>
+                <label class="step__label">
+                  гід 3
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid"
+                    value="350"
+                  />
+                </label>
+              </div>
+            </div>
+            <div class="step">
+              <h2>Етап 2</h2>
+              <select class="step__select">
+                <option class="step__option" value="400">авто</option>
+                <option class="step__option" value="150">автобус</option>
+                <option class="step__option" value="800">літак</option>
+              </select>
+              <div class="box">
+                <label class="step__label">
+                  сніданок
+                  <input class="step__input" type="checkbox" value="250" />
+                </label>
+                <label class="step__label">
+                  обід
+                  <input class="step__input" type="checkbox" value="350" />
+                </label>
+                <label class="step__label">
+                  вечеря
+                  <input class="step__input" type="checkbox" value="350" />
+                </label>
+                <label class="step__label">
+                  гід 1
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid1"
+                    value="200"
+                  />
+                </label>
+                <label class="step__label">
+                  гід 2
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid1"
+                    value="350"
+                  />
+                </label>
+                <label class="step__label">
+                  гід 3
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid1"
+                    value="250"
+                  />
+                </label>
+              </div>
+            </div>
+            <div class="step">
+              <h2>Етап 3</h2>
+              <select class="step__select">
+                <option class="step__option" value="300">авто</option>
+                <option class="step__option" value="400">автобус</option>
+                <option class="step__option" value="1100">літак</option>
+              </select>
+              <div class="box">
+                <label class="step__label">
+                  сніданок
+                  <input class="step__input" type="checkbox" value="300" />
+                </label>
+                <label class="step__label">
+                  обід
+                  <input class="step__input" type="checkbox" value="350" />
+                </label>
+                <label class="step__label">
+                  вечеря
+                  <input class="step__input" type="checkbox" value="300" />
+                </label>
+                <label class="step__label">
+                  гід 1
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid2"
+                    value="400"
+                  />
+                </label>
+                <label class="step__label">
+                  гід 2
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid2"
+                    value="350"
+                  />
+                </label>
+                <label class="step__label">
+                  гід 3
+                  <input
+                    class="step__input"
+                    type="radio"
+                    name="gid2"
+                    value="400"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="travel__btn blue-btn" style="margin-top: 20px">
+            Підрахувати суму
+          </button>
+          <span class="travel__sum"></span>
+        </div>
+        <style>
+          .box {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
+          .travel__wrapper {
+            display: flex;
+            gap: 50px;
+          }
+        </style>
+        <script>
+          function getSumFromInputs() {
+            let inputs = document.querySelectorAll('input')
+            let sum = 0
+            for (const inp of inputs) {
+              if (inp.checked) {
+                sum += parseInt(inp.value)
+              }
+            }
+            return sum
+          }
+
+          function getSumFromSelects() {
+            let sum = 0
+            let selects = document.querySelectorAll('select')
+            for (const select of selects) {
+              sum += parseInt(select.value)
+            }
+            return sum
+          }
+
+          function getTotalPrice() {
+            let output = document.querySelector('.travel__sum')
+            let sumFromInputs = getSumFromInputs()
+            let sumFromSelects = getSumFromSelects()
+            output.innerText = sumFromInputs + sumFromSelects
+          }
+          window.onload = function () {
+            document.querySelector('.travel__btn').onclick = getTotalPrice
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

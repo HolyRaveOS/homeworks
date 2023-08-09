@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task5</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 5</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №3 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task5
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="table-parameters">
+          <label class="table-parameters__label" style="display: block">
+            <input
+              class="table-parameters__input column"
+              type="text"
+              placeholder="Введіть кількість рядків"
+            />
+          </label>
+          <br />
+          <label class="table-parameters__label" style="display: block">
+            <input
+              class="table-parameters__input row"
+              type="text"
+              placeholder="Введіть кількість стовпців"
+            />
+          </label>
+          <br />
+          <button
+            class="table-parameters__btn blue-btn build"
+            style="display: block"
+          >
+            Побудувати
+          </button>
+          <br />
+        </div>
+        <div class="table"></div>
+        <script>
+          function createTable() {
+            let valueCounter = 0
+            const row = parseInt(document.querySelector('.row').value)
+            const column = parseInt(document.querySelector('.column').value)
+            const tableEl = document.createElement('table')
+
+            for (let i = 0; i < row; i++) {
+              const trEl = document.createElement('tr')
+              for (let j = 0; j < column; j++) {
+                const tdEl = document.createElement('td')
+                valueCounter++
+                tdEl.innerText = valueCounter
+                trEl.append(tdEl)
+              }
+              tableEl.append(trEl)
+            }
+            document.querySelector('.table').append(tableEl)
+          }
+
+          window.onload = function () {
+            document.querySelector('.build').onclick = createTable
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 1</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №18 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task1
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="calculator">
+          <label class="calculator__label" style="display: block">
+            First number
+            <input
+              type="text"
+              class="calculator__input first-num"
+              placeholder="0"
+            />
+          </label>
+          <label class="calculator__label">
+            Second number
+            <input
+              type="text"
+              class="calculator__input second-num"
+              placeholder="0"
+            />
+          </label>
+          <div class="calculator__buttons">
+            <button class="calculator__btn blue-btn add">Додати</button>
+            <button class="calculator__btn blue-btn minus">Відняти</button>
+            <button class="calculator__btn blue-btn multiply">Помножити</button>
+            <button class="calculator__btn blue-btn divide">Поділити</button>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <label class="calculator__label">
+            Результат
+            <input type="text" class="calculator__input result" value="0" />
+          </label>
+        </div>
+        <script>
+          function getValues() {
+            const firstNum = parseFloat(
+              document.querySelector('.first-num').value
+            )
+            const secondNum = parseFloat(
+              document.querySelector('.second-num').value
+            )
+            return [firstNum, secondNum]
+          }
+
+          function showResult(res) {
+            document.querySelector('.result').value = res
+          }
+
+          function add() {
+            const res = getValues()[0] + getValues()[1]
+            showResult(res)
+          }
+
+          function minus() {
+            const res = getValues()[0] - getValues()[1]
+            showResult(res)
+          }
+
+          function multiply() {
+            const res = getValues()[0] * getValues()[1]
+            showResult(res)
+          }
+
+          function divide() {
+            const res = getValues()[0] / getValues()[1]
+            showResult(res)
+          }
+
+          window.onload = function () {
+            document.querySelector('.add').onclick = add
+            document.querySelector('.minus').onclick = minus
+            document.querySelector('.multiply').onclick = multiply
+            document.querySelector('.divide').onclick = divide
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

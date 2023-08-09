@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task6</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 6</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №3 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task6
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="find-average">
+          <label class="find-average__label" style="display: block">
+            <strong> Price number</strong>
+            <input
+              class="find-average__input price-num"
+              type="text"
+              placeholder="0"
+            />
+          </label>
+          <button
+            class="find-average__bnt blue-btn get-table"
+            style="display: block"
+          >
+            get table
+          </button>
+          <br />
+          <button
+            class="find-average__bnt blue-btn get-result"
+            style="display: block"
+          >
+            get sum
+          </button>
+          <span class="result"></span>
+        </div>
+        <style>
+          .value {
+            margin: 10px;
+          }
+        </style>
+        <script>
+          function createInputs() {
+            let parentToNestedElements = document.querySelector('.get-table')
+            let newLabel
+            let newInput
+            const priceNum = parseInt(
+              document.querySelector('.price-num').value
+            )
+            for (let i = 0; i < priceNum; i++) {
+              newLabel = document.createElement('label')
+              newInput = document.createElement('input')
+              newInput.classList.add('value')
+              parentToNestedElements.after(newLabel)
+              newLabel.append(newInput)
+            }
+          }
+
+          function getAverage() {
+            let inputs = document.querySelectorAll('.value')
+            let sum = 0
+            for (const inp of inputs) {
+              sum += parseInt(inp.value)
+            }
+            let average = sum / inputs.length
+            let res = document.querySelector('.result')
+            res.innerText = average.toFixed(1)
+          }
+
+          window.onload = function () {
+            document.querySelector('.get-table').onclick = createInputs
+            document.querySelector('.get-result').onclick = getAverage
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
