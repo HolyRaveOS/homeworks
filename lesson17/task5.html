@@ -28,105 +28,142 @@
           </ul>
         </nav>
         <script>
-          class TestData {
-            constructor(
-              firstNum,
-              secondNum,
-              operation,
-              userAnswer,
-              correctAnswer
-            ) {
-              this.firstNum = firstNum
-              this.secondNum = secondNum
-              this.operation = operation
-              this.userAnswer = userAnswer
-              this.correctAnswer = correctAnswer
-            }
-          }
-
-          class History {
-            constructor(title, testList) {
-              this.title = title
-              this.testList = testList
+          class MultChecker {
+            constructor(minNumber = 2, maxNumber = 9) {
+              this.minNumber = minNumber
+              this.maxNumber = maxNumber
             }
 
-            addHistory(testRes) {
-              this.testList.push(testRes)
-            }
-
-            showHistory() {
-              document.write(`${this.title}=${JSON.stringify(this.testList)}`)
-            }
-          }
-
-          class MultiChecker {
-            constructor() {
-              this.randomNum1 = Math.floor(Math.random() * 8 + 2)
-              this.randomNum2 = Math.floor(Math.random() * 8 + 2)
-            }
-
-            startTest() {
-              let multiChecker = new TestData(
-                this.randomNum1,
-                this.randomNum2,
-                '*',
-                parseInt(prompt(`${this.randomNum1}*${this.randomNum2}`)),
-                this.randomNum1 * this.randomNum2
+            getRandNum(minNumber, maxNumber) {
+              minNumber ??= this.minNumber
+              maxNumber ??= this.maxNumber
+              return (
+                minNumber +
+                Math.floor(Math.random() * (maxNumber - minNumber + 1))
               )
-              return multiChecker
+            }
+
+            test() {
+              const firstNum = this.getRandNum()
+              const secondNum = this.getRandNum()
+              const correctAnswer = firstNum * secondNum
+              const userAnswer = parseInt(prompt(`${firstNum}*${secondNum}=`))
+              correctAnswer === userAnswer
+                ? alert('Вірно')
+                : alert(`Не вірно правильна відповідь = ${correctAnswer}`)
+              return new TestData({
+                firstNum,
+                secondNum,
+                operation: '*',
+                userAnswer,
+                correctAnswer,
+              })
             }
           }
 
           class AddChecker {
-            constructor(range) {
-              this.randomNum1 = Math.floor(Math.random() * range + 1)
-              this.randomNum2 = Math.floor(Math.random() * range + 1)
+            constructor(minNumber = 2, maxNumber = 9) {
+              this.minNumber = minNumber
+              this.maxNumber = maxNumber
             }
 
-            startTest() {
-              const addChecker = new TestData(
-                this.randomNum1,
-                this.randomNum2,
-                '+',
-                parseInt(prompt(`${this.randomNum1}+${this.randomNum2}`)),
-                this.randomNum1 + this.randomNum2
+            getRandNum(minNumber, maxNumber) {
+              minNumber ??= this.minNumber
+              maxNumber ??= this.maxNumber
+              return (
+                minNumber +
+                Math.floor(Math.random() * (maxNumber - minNumber + 1))
               )
-              return addChecker
+            }
+
+            test() {
+              const firstNum = this.getRandNum()
+              const secondNum = this.getRandNum()
+              const correctAnswer = firstNum + secondNum
+              const userAnswer = parseInt(prompt(`${firstNum}+${secondNum}=`))
+              correctAnswer === userAnswer
+                ? alert('Вірно')
+                : alert(`Не вірно правильна відповідь = ${correctAnswer}`)
+              return new TestData({
+                firstNum,
+                secondNum,
+                operation: '+',
+                userAnswer,
+                correctAnswer,
+              })
+            }
+          }
+
+          class TestData {
+            constructor(testDataObj) {
+              Object.assign(this, testDataObj)
+            }
+
+            toString() {
+              return `Test "firstNum:${this.firstNum} operation:${this.operation} secondNum:${this.secondNum}" userAnswer=${this.userAnswer} correctAnswer=${this.correctAnswer}`
+            }
+          }
+
+          class History {
+            constructor() {
+              this.testList = []
+            }
+
+            addNewTest(testObj) {
+              this.testList.push(new TestData(testObj))
+            }
+
+            showTestList() {
+              for (const test of this.testList) {
+                document.write(test)
+                document.write('<hr>')
+              }
             }
           }
 
           class TestManager {
-            static #isCreated
-            constructor(taskAmount) {
-              if (TestManager.#isCreated) return TestManager.#isCreated
-              this.taskAmount = taskAmount
-              TestManager.#isCreated = this
+            constructor(testCount, interval, minNumber, maxNumber) {
+              this.testCount = testCount
+              this.interval = interval * 1000
+              this.testsNumDone = 0
+              this.multChecker = new MultChecker()
+              this.addChecker = new AddChecker((minNumber = 2), maxNumber)
+              this.history = new History()
             }
 
-            getRandomTest() {
-              return Math.random() < 0.5 ? 'multiply' : 'add'
+            doTest() {
+              let testResult
+              Math.random() > 0.5
+                ? (testResult = this.addChecker.test())
+                : (testResult = this.multChecker.test())
+              this.history.addNewTest(testResult)
+              this.testsNumDone++
+              if (this.testsNumDone < this.testCount)
+                setTimeout(() => {
+                  this.doTest()
+                }, this.interval)
+              else this.history.showTestList()
             }
 
-            startManager() {
-              const history = new History('testlist', [])
-              for (let i = 0; i < this.taskAmount; i++) {
-                this.getRandomTest() === 'multiply'
-                  ? history.addHistory(new MultiChecker().startTest())
-                  : history.addHistory(
-                      new AddChecker(userAddCheckerRange).startTest()
-                    )
-              }
-              return history
+            run() {
+              this.doTest()
             }
           }
 
-          const userAddCheckerRange = parseInt(
-            prompt('Введіть діапазон чисел в якому хочете тренувати додавання')
+          const userTestCount = parseInt(prompt('Введіть кількість тестів'))
+          const userInterval = parseInt(
+            prompt('Введіть інтервал між тестами в секуднах')
           )
-          const userTaskAmount = parseInt(prompt('Введіьт кількість тестів'))
-
-          const testManager = new TestManager(userTaskAmount)
-          testManager.startManager().showHistory()
+          const userAddCheckerRange = parseInt(
+            prompt('Ведіть максимальне чилсо для додавання')
+          )
+          let manager = new TestManager(
+            userTestCount,
+            userInterval,
+            2,
+            userAddCheckerRange
+          )
+          manager.run()
         </script>
       </div>
     </div>
