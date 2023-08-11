@@ -32,7 +32,7 @@
             <strong> Price number</strong>
             <input
               class="find-average__input price-num"
-              type="text"
+              type="number"
               placeholder="0"
             />
           </label>
@@ -67,6 +67,7 @@
             for (let i = 0; i < priceNum; i++) {
               newLabel = document.createElement('label')
               newInput = document.createElement('input')
+              newInput.setAttribute('type', 'number')
               newInput.classList.add('value')
               parentToNestedElements.after(newLabel)
               newLabel.append(newInput)
