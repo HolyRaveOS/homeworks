@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task7</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 7</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №3 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task7
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="snowflake">
+          <img
+            src="./task7-img/snowflake.png"
+            alt="сніжинка"
+            width="100"
+            height="100"
+          />
+        </div>
+        <style>
+          .snowflake {
+            position: absolute;
+            top: 0;
+            right: 50%;
+            transform: translateX(50%);
+          }
+        </style>
+        <script>
+          const snowflake = document.querySelector('.snowflake')
+          let counter = 0
+          setInterval(() => {
+            snowflake.style.top = counter + 'px'
+            counter += 6
+            if (counter >= innerHeight - 100) counter = 0
+          }, 100)
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

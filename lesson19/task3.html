@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 3</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №18 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task3
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="list-container"></div>
+        <style>
+          .lists {
+            display: flex;
+            justify-content: space-evenly;
+          }
+
+          .paint-btn {
+            display: block;
+            margin: 0 auto;
+            margin-top: 40px;
+          }
+        </style>
+        <script>
+          class OlList {
+            constructor(randomElements = 10, randomFigures = 100) {
+              this.randomElements = randomElements
+              this.randomFigures = randomFigures
+            }
+            getRandomElements() {
+              return Math.floor(Math.random() * this.randomElements + 1)
+            }
+            getRandomFigures() {
+              return Math.floor(Math.random() * this.randomFigures + 1)
+            }
+
+            render(containerSelector) {
+              this.lists = document.createElement('div')
+              this.lists.className = 'lists'
+              this.olList
+              this.li
+              this.span
+              this.button = document.createElement('button')
+              this.button.className = 'paint-btn blue-btn'
+              this.button.innerText = 'Замалювати'
+              for (let i = 0; i < 5; i++) {
+                this.olList = document.createElement('ol')
+                this.lists.append(this.olList)
+                for (let j = 0; j < this.getRandomElements(); j++) {
+                  this.li = document.createElement('li')
+                  this.span = document.createElement('span')
+                  this.span.innerText = this.getRandomFigures()
+                  this.li.append(this.span)
+                  this.olList.append(this.li)
+                }
+              }
+              this.lists.append(this.olList)
+              if (containerSelector)
+                document.querySelector(containerSelector).append(this.lists)
+              document.querySelector(containerSelector).append(this.button)
+              return this.lists
+            }
+
+            SetPaint() {
+              let parsedValue
+              for (let ol = 0; ol < this.lists.children.length; ol++) {
+                for (
+                  let li = 0;
+                  li < this.lists.children[ol].childNodes.length;
+                  li++
+                ) {
+                  parsedValue = parseInt(
+                    this.lists.children[ol].childNodes[li].innerText
+                  )
+                  if (parsedValue % 2 === 0)
+                    this.lists.children[ol].childNodes[li].style.color = 'green'
+                  else
+                    this.lists.children[ol].childNodes[li].style.color = 'red'
+                }
+              }
+            }
+          }
+
+          window.onload = function () {
+            let olList = new OlList()
+            olList.render('.list-container')
+            document.querySelector('.paint-btn').onclick = function () {
+              olList.SetPaint()
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

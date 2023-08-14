@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task4</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 4</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №18 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task4
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="tables"></div>
+        <style>
+          .tables {
+            display: flex;
+            justify-content: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 20px;
+          }
+          table {
+            width: 150px;
+            height: 150px;
+          }
+          td {
+            padding: 10px;
+          }
+          .border-red {
+            box-shadow: 0 0 0 2px red;
+          }
+        </style>
+        <script>
+          class Tables {
+            constructor(title, rowNum = 3, columnNum = 3, maxRandNum = 100) {
+              this.title = title
+              this.rowNum = rowNum
+              this.columnNum = columnNum
+              this.maxRandNum = maxRandNum
+            }
+
+            getRandNum() {
+              return Math.floor(Math.random() * this.maxRandNum + 1)
+            }
+
+            render(containerSelector) {
+              const tableBox = document.createElement('div')
+              tableBox.className = 'tables__box'
+
+              const tableEl = document.createElement('table')
+              tableEl.className = 'tables__table'
+              const tableInfo = document.createElement('div')
+              tableInfo.className = 'tables__info'
+
+              const tableTitle = document.createElement('h2')
+              tableTitle.className = 'tables__title'
+              tableTitle.innerText = this.title
+              tableInfo.append(tableTitle)
+
+              const tableClickCount = document.createElement('span')
+              tableClickCount.className = 'tables__click-count'
+              tableClickCount.setAttribute('data-count', 0)
+              tableInfo.append(tableClickCount)
+              for (let i = 0; i < this.rowNum; i++) {
+                const trEl = document.createElement('tr')
+                trEl.className = 'tables__tr'
+                for (let j = 0; j < this.columnNum; j++) {
+                  this.tdEl = document.createElement('td')
+                  this.tdEl.className = 'tables__td'
+                  this.tdEl.innerText = this.getRandNum()
+                  trEl.append(this.tdEl)
+                }
+                tableEl.append(trEl)
+                tableBox.append(tableInfo)
+                tableBox.append(tableEl)
+              }
+              if (containerSelector)
+                document.querySelector(containerSelector).append(tableBox)
+              return tableEl
+            }
+            multipleTables(val) {
+              for (let i = 0; i < val; i++) {
+                new Tables('table' + [i + 1]).render('.tables')
+              }
+            }
+          }
+
+          window.onload = function () {
+            let tables = new Tables().multipleTables(3)
+            const tdList = document.querySelectorAll('.tables__td')
+            const tableList = document.querySelectorAll('.tables__table')
+
+            for (const table of tableList) {
+              let value = 1
+              function tableClick() {
+                table.closest('.tables__box').firstChild.lastChild.innerText =
+                  'Кількість кліків =' + ' ' + value++
+              }
+              table.onclick = tableClick
+            }
+
+            for (const td of tdList) {
+              td.onclick = function () {
+                value++
+                td.closest('.tables__table').classList.add('border-red')
+              }
+            }
+
+            let spanList = document.querySelectorAll('.tables__click-count')
+            for (const span of spanList) {
+              value = parseInt(span.getAttribute('data-count'))
+              span.innerText = 'Нажато разів =' + ' ' + value
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
