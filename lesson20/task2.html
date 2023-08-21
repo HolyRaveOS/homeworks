@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task2</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 2</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №20 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task2
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <style>
+          body {
+            overflow: hidden;
+          }
+
+          .tank {
+            transform: rotate(-90deg);
+            position: absolute;
+            top: 0;
+            cursor: pointer;
+          }
+        </style>
+        <script>
+          class Tank {
+            constructor({ tankImgSrc, title, tankSpeed }) {
+              this.tankImgSrc = tankImgSrc
+              this.title = title
+              this.tankSpeed = tankSpeed
+            }
+
+            getRandNum(min = 1, max = 100) {
+              return min + Math.floor(Math.random() * max)
+            }
+
+            setPosition() {
+              this.tank.style.left = this.getRandNum() + '%'
+            }
+
+            hitTank(e) {
+              e.srcElement.attributes.src.value = './task2.img/explosion.jpg'
+              const timeOut = setTimeout(() => {
+                e.target.remove()
+              }, 150)
+            }
+
+            moveTank() {
+              this.tankPosition = 0
+              const intervalId = setInterval(() => {
+                this.tankPosition++
+                this.tank.style.top = this.tankPosition + 'px'
+                if (this.tankPosition >= innerHeight) {
+                  clearInterval(intervalId)
+                  this.tank.remove()
+                }
+              }, this.tankSpeed)
+            }
+
+            render(containerSelector) {
+              const tank = document.createElement('img')
+              tank.className = 'tank'
+              tank.setAttribute('src', this.tankImgSrc)
+              tank.setAttribute('alt', this.title)
+              tank.style.width = 150 + 'px'
+              tank.onclick = this.hitTank
+              this.tank = tank
+              if (containerSelector)
+                document.querySelector(containerSelector).append(tank)
+              return tank
+            }
+          }
+
+          class TanksManager {
+            constructor(tankList) {
+              this.tankList = tankList
+            }
+
+            render() {
+              const el = document.querySelector('.wrapper')
+              for (const tank of this.tankList) {
+                const tankObj = new Tank(tank)
+                el.append(tankObj.render())
+                tankObj.setPosition()
+                tankObj.moveTank()
+              }
+            }
+          }
+
+          const tankList = [
+            {
+              tankImgSrc: './task2.img/tank.png',
+              title: 'Танк',
+              tankSpeed: 5,
+            },
+            {
+              tankImgSrc: './task2.img/tank.png',
+              title: 'Танк',
+              tankSpeed: 15,
+            },
+            {
+              tankImgSrc: './task2.img/tank.png',
+              title: 'Танк',
+              tankSpeed: 25,
+            },
+            {
+              tankImgSrc: './task2.img/tank.png',
+              title: 'Танк',
+              tankSpeed: 10,
+            },
+            {
+              tankImgSrc: './task2.img/tank.png',
+              title: 'Танк',
+              tankSpeed: 20,
+            },
+          ]
+
+          const tanks = new TanksManager(tankList)
+          tanks.render()
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

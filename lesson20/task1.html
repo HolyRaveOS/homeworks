@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 1</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №20 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task1
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <style>
+          body {
+            overflow: hidden;
+          }
+        </style>
+        <script>
+          class Star {
+            constructor({
+              imgSrc,
+              title,
+              imgWidth,
+              imgMaxWidth = 100,
+              interval,
+            }) {
+              this.imgSrc = imgSrc
+              this.title = title
+              this.imgWidth = imgWidth
+              this.imgMaxWidth = imgMaxWidth
+              this.interval = interval
+            }
+
+            getRandNum(min = 1, max = 100) {
+              return min + Math.floor(Math.random() * max)
+            }
+
+            setPosition() {
+              this.star.style.top = this.getRandNum() + '%'
+              this.star.style.left = this.getRandNum() + '%'
+            }
+
+            increaseStarSize() {
+              this.sizeCount = this.imgWidth
+              const intervalId = setInterval(() => {
+                this.sizeCount += 1
+                this.star.style.width = this.sizeCount + 'px'
+                if (this.sizeCount >= this.imgMaxWidth) {
+                  this.setPosition()
+                  this.sizeCount = this.imgWidth
+                }
+              }, this.interval)
+            }
+
+            render(containerSelector) {
+              const star = document.createElement('img')
+              star.setAttribute('src', this.imgSrc)
+              star.setAttribute('alt', this.title)
+              star.style.position = 'absolute'
+              star.style.width = this.imgWidth + 'px'
+              star.className = 'star'
+              this.star = star
+              if (containerSelector)
+                document.querySelector(containerSelector).append(star)
+              return star
+            }
+          }
+
+          class StarManager {
+            constructor(starList) {
+              this.starList = starList
+            }
+
+            render() {
+              const el = document.querySelector('.wrapper')
+              for (const star of this.starList) {
+                const starObj = new Star(star)
+                el.append(starObj.render())
+                starObj.setPosition()
+                starObj.increaseStarSize()
+              }
+            }
+          }
+
+          const starList = [
+            {
+              imgSrc: './task1img/star.png',
+              title: 'star',
+              imgWidth: 50,
+              imgMaxWidth: 100,
+              interval: 50,
+            },
+            {
+              imgSrc: './task1img/star.png',
+              title: 'star',
+              imgWidth: 50,
+              imgMaxWidth: 100,
+              interval: 50,
+            },
+            {
+              imgSrc: './task1img/star.png',
+              title: 'star',
+              imgWidth: 50,
+              imgMaxWidth: 100,
+              interval: 50,
+            },
+            {
+              imgSrc: './task1img/star.png',
+              title: 'star',
+              imgWidth: 50,
+              imgMaxWidth: 100,
+              interval: 50,
+            },
+            {
+              imgSrc: './task1img/star.png',
+              title: 'star',
+              imgWidth: 50,
+              imgMaxWidth: 100,
+              interval: 50,
+            },
+          ]
+
+          const stars = new StarManager(starList)
+          stars.render()
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

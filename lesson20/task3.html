@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <style>
+    .form__label {
+      display: flex;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 3</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №20 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task3
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <form class="form">
+          <label class="form__label">
+            <input class="form__input" type="number" placeholder="вік" />
+          </label>
+          <label class="form__label">
+            <input class="form__input" type="number" placeholder="зріст" />
+          </label>
+          <label class="form__label">
+            <input class="form__input" type="number" placeholder="вага" />
+          </label>
+          <label class="form__label">
+            <input
+              class="form__input"
+              type="number"
+              placeholder="заробітна плата"
+            />
+          </label>
+          <label class="form__label">
+            <input class="form__input" type="number" placeholder="стаж" />
+          </label>
+          <label class="form__label">
+            <input
+              class="form__input"
+              type="number"
+              placeholder="номер відділу"
+            />
+          </label>
+          <label class="form__label">
+            <input
+              class="form__input"
+              type="number"
+              placeholder="порядковий номер"
+            />
+          </label>
+        </form>
+        <script>
+          function manageForm(formClassName) {
+            const form = (document.querySelector('.form').onclick = (e) => {
+              if (e.target.tagName === 'INPUT')
+                e.target.attributes.placeholder.nodeValue = 0
+            })
+          }
+
+          manageForm('.form')
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task5</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 5</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №20 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task5
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="product-list"></div>
+        <style>
+          .product {
+            border: 2px solid #000;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 5px 10px;
+            max-width: 700px;
+          }
+
+          .product__img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+          }
+
+          .product__title {
+            font-size: 16px;
+            max-width: 200px;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          .product__count {
+            display: flex;
+            gap: 10px;
+            flex-grow: 1;
+          }
+
+          .btn {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .btn span {
+            min-width: 18px;
+            height: 2px;
+            background-color: #000;
+          }
+
+          .btn span::after {
+            content: '';
+            min-width: 18px;
+            height: 2px;
+            background-color: #000;
+            transform: rotate(90deg);
+            display: block;
+          }
+
+          .product__count-minus-btn span::after {
+            display: none;
+          }
+
+          .product__remove-btn span {
+            transform: rotate(45deg);
+          }
+        </style>
+        <script>
+          class Product {
+            constructor({ imgSrc, title, count, price }) {
+              this.imgSrc = imgSrc
+              this.title = title
+              this.count = count
+              this.price = price
+            }
+
+            render(containerSelector) {
+              const el = document.createElement('div')
+              el.className = 'product'
+              const img = document.createElement('img')
+              img.className = 'product__img'
+              img.setAttribute('src', this.imgSrc)
+              img.setAttribute('alt', this.title)
+              el.append(img)
+
+              const prodTitle = document.createElement('span')
+              prodTitle.className = 'product__title'
+              prodTitle.innerText = this.title
+              el.append(prodTitle)
+
+              const prodCount = document.createElement('div')
+              prodCount.className = 'product__count'
+              el.append(prodCount)
+
+              const minusBtn = document.createElement('button')
+              minusBtn.className = 'product__count-minus-btn btn'
+              minusBtn.onclick = this.minusCount.bind(this)
+
+              const minusBtnSpan = document.createElement('span')
+              minusBtn.append(minusBtnSpan)
+              prodCount.append(minusBtn)
+
+              const prodCountNum = document.createElement('span')
+              prodCountNum.className = 'product__count-num'
+              prodCountNum.innerText = this.count
+              prodCount.append(prodCountNum)
+
+              const pluseBtn = document.createElement('button')
+              pluseBtn.className = 'product__count-plus-btn btn'
+              pluseBtn.onclick = this.pluseCount.bind(this)
+              const pluseBtnSpan = document.createElement('span')
+              pluseBtn.append(pluseBtnSpan)
+              prodCount.append(pluseBtn)
+
+              const prodPayment = document.createElement('div')
+              prodPayment.className = 'product__payment'
+              el.append(prodPayment)
+
+              const prodPaymentText = document.createElement('span')
+              prodPaymentText.className = 'product__payment-text'
+              prodPaymentText.innerText = 'До оплати: '
+              prodPayment.append(prodPaymentText)
+
+              const prodPaymentPrice = document.createElement('span')
+              prodPaymentPrice.className = 'product__payment-price price'
+              prodPaymentPrice.innerText = this.price * this.count
+              prodPayment.append(prodPaymentPrice)
+
+              const prodPaymentCurrency = document.createElement('span')
+              prodPaymentCurrency.className =
+                'product__payment-currency currency'
+              prodPaymentCurrency.innerText = 'грн'
+              prodPayment.append(prodPaymentCurrency)
+
+              const removeBtn = document.createElement('button')
+              removeBtn.className = 'product__remove-btn btn'
+              removeBtn.onclick = this.deleteProd.bind(this)
+              const removeBtnSpan = document.createElement('span')
+              removeBtn.append(removeBtnSpan)
+              el.append(removeBtn)
+
+              this.prodPaymentPrice = prodPaymentPrice
+              this.prodCountNum = prodCountNum
+              this.el = el
+              if (containerSelector)
+                document.querySelector(containerSelector).append(el)
+              return el
+            }
+
+            updateCountAndPrice() {
+              this.prodCountNum.innerText = this.count
+              this.prodPaymentPrice.innerText = this.price * this.count
+            }
+
+            pluseCount() {
+              this.count++
+              this.updateCountAndPrice()
+              const addEvent = new CustomEvent('addProd', {
+                detail: {
+                  addedObjPrice: this.price,
+                },
+              })
+              this.el.dispatchEvent(addEvent)
+            }
+
+            minusCount() {
+              this.count--
+              this.updateCountAndPrice()
+              if (this.count < 1) this.el.remove()
+
+              const minusEvent = new CustomEvent('minusProd', {
+                detail: {
+                  minusdObjPrice: this.price,
+                },
+              })
+              this.el.dispatchEvent(minusEvent)
+            }
+
+            deleteProd() {
+              const deleteEvent = new CustomEvent('removeProd', {
+                detail: {
+                  deletedObjPrice: this.price * this.count,
+                },
+              })
+
+              this.el.dispatchEvent(deleteEvent)
+              this.el.remove()
+            }
+          }
+
+          class ProductManager {
+            constructor(productList) {
+              this.productList = productList
+              this.totalPrice = this.calculateTotalPrice()
+            }
+
+            calculateTotalPrice() {
+              return this.productList.reduce(
+                (accum, product) => accum + product.price * product.count,
+                0
+              )
+            }
+
+            onProductDelete(e) {
+              const priceToDelete = e.detail.deletedObjPrice
+              this.totalPrice -= priceToDelete
+              this.totalSumDivPrice.innerText = this.totalPrice
+
+              if (this.totalPrice === 0) {
+                this.totalSumDiv.remove()
+              }
+            }
+
+            onProductPlus(e) {
+              const priceToAdd = e.detail.addedObjPrice
+              this.totalPrice += priceToAdd
+              this.totalSumDivPrice.innerText = this.totalPrice
+            }
+
+            onProductMinus(e) {
+              const priceToMinus = e.detail.minusdObjPrice
+              this.totalPrice -= priceToMinus
+              this.totalSumDivPrice.innerText = this.totalPrice
+
+              if (this.totalPrice === 0) {
+                this.totalSumDiv.remove()
+              }
+            }
+
+            render(containerSelector) {
+              const el = document.createElement('div')
+              for (const product of this.productList) {
+                const productObj = new Product(product)
+                el.append(productObj.render())
+
+                productObj.el.addEventListener(
+                  'removeProd',
+                  this.onProductDelete.bind(this)
+                )
+                productObj.el.addEventListener(
+                  'addProd',
+                  this.onProductPlus.bind(this)
+                )
+                productObj.el.addEventListener(
+                  'minusProd',
+                  this.onProductMinus.bind(this)
+                )
+              }
+
+              const totalSumDiv = document.createElement('div')
+
+              totalSumDiv.className = 'product-list__total-sum'
+              el.append(totalSumDiv)
+
+              const totalSumDivText = document.createElement('span')
+              totalSumDivText.className = 'product-list__total-sum-text'
+              totalSumDivText.innerText = 'Загалом до оплати: '
+              totalSumDiv.append(totalSumDivText)
+
+              const totalSumDivPrice = document.createElement('span')
+              totalSumDivPrice.className = 'product-list__total-sum-price price'
+              totalSumDivPrice.innerText = this.totalPrice
+              totalSumDiv.append(totalSumDivPrice)
+
+              const totalSumDivCurrency = document.createElement('span')
+              totalSumDivCurrency.className =
+                'product-list__total-sum-currency currency'
+              totalSumDiv.append(totalSumDivCurrency)
+
+              this.totalSumDiv = totalSumDiv
+              this.totalSumDivPrice = totalSumDivPrice
+              if (containerSelector)
+                document.querySelector(containerSelector).append(el)
+              return el
+            }
+          }
+
+          const productList = [
+            {
+              imgSrc: './task5img/2.webp',
+              title:
+                'Мобильный телефон Samsung Galaxy A24 6/128GB Dark Red (SM-A245FDRVSEK)',
+              count: 2,
+              price: 8999,
+            },
+            {
+              imgSrc: './task5img/3.webp',
+              title:
+                'Ноутбук Acer Aspire 5 A515-56G-51Q5 (NX.AT2EU.00M) Pure Silver / Intel Core i5-1135G7 / RAM 8 ГБ / SSD 512 ГБ / nVidia GeForce MX450',
+              count: 1,
+              price: 21999,
+            },
+            {
+              imgSrc: './task5img/4.webp',
+              title: 'Наушники JBL Tune 720BT Black (JBLT720BTBLK)',
+              count: 3,
+              price: 2399,
+            },
+          ]
+
+          function func(e) {
+            console.log(e.detail.deletedObjPrice)
+          }
+          window.onload = function () {
+            const productManager = new ProductManager(productList)
+            productManager.render('.product-list')
+          }
+        </script>
+        <style></style>
+      </div>
+    </div>
+  </body>
+</html>

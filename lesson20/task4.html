@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task4</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 4</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №20 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task4
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <button>button</button>
+        <button>button</button>
+        <button>button</button>
+        <button>button</button>
+        <label>
+          <input type="text" />
+        </label>
+        <label>
+          <input type="text" />
+        </label>
+        <label>
+          <input type="text" />
+        </label>
+        <label>
+          <input type="text" />
+        </label>
+        <label>
+          <input type="text" />
+        </label>
+        <span class="buttons-click-count" style="display: block"
+          >Кількість натискань на кнопки:
+        </span>
+        <span class="inputs-click-count">Кількість натискань на інпути: </span>
+        <script>
+          function countClicks() {
+            let inputClickCount = 0
+            let buttonClickCount = 0
+            const inputs = document.querySelector('.inputs-click-count')
+            const buttons = document.querySelector('.buttons-click-count')
+            window.captureEvents(Event.CLICK)
+            window.onclick = (e) => {
+              if (e.target.tagName === 'INPUT') {
+                inputClickCount += 1
+                inputs.innerText =
+                  'Кількість натискань на інпути:' + inputClickCount
+              } else if (e.target.tagName === 'BUTTON') {
+                buttonClickCount += 1
+                buttons.innerText =
+                  'Кількість натискань на кнопки:' + buttonClickCount
+              }
+            }
+          }
+          countClicks()
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
