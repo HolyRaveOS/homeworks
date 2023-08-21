@@ -62,7 +62,8 @@
                 inputClickCount += 1
                 inputs.innerText =
                   'Кількість натискань на інпути:' + inputClickCount
-              } else if (e.target.tagName === 'BUTTON') {
+              }
+              if (e.target.tagName === 'BUTTON') {
                 buttonClickCount += 1
                 buttons.innerText =
                   'Кількість натискань на кнопки:' + buttonClickCount
