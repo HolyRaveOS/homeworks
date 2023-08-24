@@ -68,12 +68,9 @@
                 if (scoreInputValue < 1 || scoreInputValue > 100)
                   throw new Is1To100Range()
               } catch (err) {
-                if (err instanceof IsNotNumberError)
-                  alert('Пишіть тільки числа')
-                else if (err instanceof IsNotHoliday)
-                  alert('У цей місяць канікули')
-                else if (err instanceof Is1To100Range)
-                  alert('має бути число від 1 до 100')
+                if (err instanceof IsNotNumberError) alert(err.message)
+                else if (err instanceof IsNotHoliday) alert(err.message)
+                else if (err instanceof Is1To100Range) alert(err.message)
                 else console.log(err.message)
                 return false
               }
