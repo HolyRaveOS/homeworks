@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 3</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №21 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task3
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <style>
+          body {
+            overflow: hidden;
+          }
+        </style>
+        <script>
+          class Parameters {
+            constructor(title, coordinateX, coordinateY, imgSrc, interval) {
+              this.title = title
+              this.coordinateX = coordinateX
+              this.coordinateY = coordinateY
+              this.imgSrc = imgSrc
+              this.interval = interval
+            }
+
+            render(containerSelector) {
+              const img = document.createElement('img')
+              img.className = 'img'
+              img.setAttribute('src', this.imgSrc)
+              img.setAttribute('alt', this.title)
+              img.style.width = 400 + 'px'
+              img.style.position = 'absolute'
+              img.style.top = this.coordinateY + '%'
+              img.style.left = this.coordinateX + '%'
+              this.img = img
+              if (containerSelector)
+                document.querySelector(containerSelector).append(img)
+            }
+
+            getRandomNum(minVal, maxVal) {
+              return minVal + Math.floor(Math.random() * maxVal)
+            }
+
+            intervalMethod(callback) {
+              const intervalId = setInterval(() => {
+                callback()
+              }, this.interval)
+            }
+          }
+
+          class House extends Parameters {
+            constructor(title, coordinateX, coordinateY, imgSrc, interval) {
+              super(title, coordinateX, coordinateY, imgSrc, interval)
+            }
+
+            increase() {
+              this.img.style.width = this.getRandomNum(100, 700) + 'px'
+            }
+          }
+
+          class Dog extends Parameters {
+            constructor(title, coordinateX, coordinateY, imgSrc, interval) {
+              super(title, coordinateX, coordinateY, imgSrc, interval)
+            }
+
+            moveCoordinateX() {
+              this.img.style.left = this.getRandomNum(0, 100) + '%'
+            }
+          }
+
+          class Bird extends Parameters {
+            constructor(title, coordinateX, coordinateY, imgSrc, interval) {
+              super(title, coordinateX, coordinateY, imgSrc, interval)
+            }
+
+            moveElement() {
+              this.img.style.left = this.getRandomNum(1, 100) + '%'
+              this.img.style.top = this.getRandomNum(1, 100) + '%'
+            }
+          }
+
+          const house = new House('House', 35, 35, './img/house.jpeg', 1000)
+          house.render('.wrapper')
+          house.intervalMethod(() => {
+            house.increase()
+          })
+          const dog = new Dog('Dog', 40, 15, './img/dog.webp', 1500)
+          dog.render('.wrapper')
+
+          dog.intervalMethod(() => {
+            dog.moveCoordinateX()
+          })
+
+          const bird = new Bird('bird', 60, 60, './img/bird.jpg', 2000)
+          bird.render('.wrapper')
+          bird.intervalMethod(() => {
+            bird.moveElement()
+          })
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

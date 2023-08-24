@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 1+2</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №21 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task1+2
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="bank"></div>
+        <style>
+          .bank__info {
+            padding-top: 40px;
+          }
+          .bank__clients-title {
+            margin-bottom: 10px;
+          }
+          .bank__clients-list {
+            margin-bottom: 10px;
+          }
+        </style>
+        <script>
+          class Client {
+            constructor(id, name, surname, money) {
+              this.id = id
+              this.name = name
+              this.surname = surname
+              this.money = money
+            }
+
+            addMoney() {
+              this.money += parseInt(this.input.value)
+              this.updateMoneyDisplay()
+            }
+
+            updateMoneyDisplay() {
+              const moneyDisplay = document.querySelector('.money-display')
+              moneyDisplay.innerText = this.toString()
+            }
+
+            withdrawMoney(money) {
+              if (parseInt(this.input.value) <= this.money) {
+                this.money -= parseInt(this.input.value)
+                this.updateMoneyDisplay()
+              } else alert('Недостатньо коштів на рахунку')
+            }
+
+            toString() {
+              return `Кількіть грошей на рахунку = ${this.money}`
+            }
+
+            render(containerSelector) {
+              const box = document.createElement('div')
+              box.className = 'bank__box'
+
+              const label = document.createElement('label')
+              label.className = 'bank__box-label'
+              label.innerText = 'Введіть суму'
+              box.append(label)
+
+              const input = document.createElement('input')
+              input.className = 'bank__box-input'
+              input.setAttribute('type', 'number')
+              label.append(input)
+
+              const addMoneyBtn = document.createElement('button')
+              addMoneyBtn.className = 'bank__box-btn'
+              addMoneyBtn.innerText = 'Додати гроші'
+              addMoneyBtn.onclick = this.addMoney.bind(this)
+              box.append(addMoneyBtn)
+
+              const withdrawMoneyBtn = document.createElement('button')
+              withdrawMoneyBtn.className = 'bank__box-btn'
+              withdrawMoneyBtn.innerText = 'Зняти гроші'
+              withdrawMoneyBtn.onclick = this.withdrawMoney.bind(this)
+              box.append(withdrawMoneyBtn)
+
+              const moneyDisplay = document.createElement('div')
+              moneyDisplay.className = 'money-display'
+              moneyDisplay.innerText = this.toString()
+              box.append(moneyDisplay)
+              this.input = input
+              if (containerSelector)
+                document.querySelector(containerSelector).append(box)
+            }
+          }
+
+          class GoldenClient extends Client {
+            constructor(id, name, surname, money, creditLimit, creditPercent) {
+              super(id, name, surname, money)
+              this.creditLimit = creditLimit
+              this.creditPercent = creditPercent
+              this.creditSum = creditLimit
+            }
+
+            getCreditPercent() {
+              const withdrawnCreditSum = this.creditLimit - this.creditSum
+              const percentForUsingCreditMoney = (
+                (this.creditPercent / 100) *
+                withdrawnCreditSum
+              ).toFixed(2)
+              return percentForUsingCreditMoney
+            }
+
+            addMoney() {
+              let creditPercent = parseFloat(this.getCreditPercent())
+              if (this.creditSum < this.creditLimit) {
+                const creditToAdd = Math.min(
+                  this.creditLimit - this.creditSum,
+                  parseInt(this.input.value)
+                )
+                this.creditSum += creditToAdd
+                const remainingMoney = parseInt(this.input.value) - creditToAdd
+                this.money += remainingMoney
+              } else {
+                this.money += parseInt(this.input.value)
+              }
+              this.money -= creditPercent
+              this.updateMoneyDisplay()
+            }
+
+            withdrawMoney(money) {
+              if (parseInt(this.input.value) <= this.money) {
+                this.money -= parseInt(this.input.value)
+              } else if (parseInt(this.input.value) <= this.creditSum) {
+                this.creditSum -= parseInt(this.input.value - this.money)
+                this.money -= this.money
+              } else alert('Недостатньо коштів')
+              this.updateMoneyDisplay()
+            }
+
+            toString() {
+              return `Кількіть грошей на рахунку = ${this.money.toFixed(2)}
+          Кількість кредитних грошей = ${this.creditSum.toFixed(2)}
+          пеня за використання кредитних коштів ${this.getCreditPercent()}`
+            }
+          }
+
+          const regularClient1 = new Client(1121, 'Misha', 'Mandela', 11230)
+
+          const regularClient2 = new Client(1541, 'Misha', 'Nelson', 10230)
+
+          const goldenClient1 = new GoldenClient(
+            1231,
+            'Roman',
+            'Nelson',
+            13230,
+            20000,
+            5
+          )
+          goldenClient1.render('.bank')
+
+          const goldenClient2 = new GoldenClient(
+            1121,
+            'Peter',
+            'Parker',
+            18230,
+            30000,
+            4
+          )
+
+          class Bank {
+            constructor(clients) {
+              this.clients = clients
+            }
+
+            getRegularClients() {
+              return this.clients.filter(
+                (client) =>
+                  client instanceof Client && !(client instanceof GoldenClient)
+              )
+            }
+
+            getGoldenClients() {
+              return this.clients.filter(
+                (client) => client instanceof GoldenClient
+              )
+            }
+
+            getTotalBankMoney() {
+              return this.clients.reduce(
+                (acuum, client) => acuum + client.money,
+                0
+              )
+            }
+
+            render(containerSelector) {
+              const bankInfo = document.createElement('div')
+              bankInfo.className = 'bank__info'
+
+              const regularClients = document.createElement('div')
+              regularClients.className = 'bank__clients'
+              bankInfo.append(regularClients)
+
+              const regularClientsTitle = document.createElement('h2')
+              regularClientsTitle.className = 'bank__clients-title'
+              regularClientsTitle.innerText = 'Звичайні клієнти'
+              regularClients.append(regularClientsTitle)
+
+              const regularClientsList = document.createElement('ul')
+              regularClientsList.className = 'bank__clients-list'
+              regularClients.append(regularClientsList)
+
+              for (const client of this.getRegularClients()) {
+                const regularClientsItem = document.createElement('li')
+                regularClientsItem.className = 'bank__clients-item'
+                regularClientsList.append(regularClientsItem)
+
+                const regularClientsText = document.createElement('span')
+                regularClientsText.className = 'bank__clients-name'
+                regularClientsText.innerText =
+                  client.name + ' ' + client.surname + ' ' + 'id: ' + client.id
+                regularClientsItem.append(regularClientsText)
+              }
+
+              const goldenClients = document.createElement('div')
+              goldenClients.className = 'bank__clients'
+              bankInfo.append(goldenClients)
+
+              const goldenClientsTitle = document.createElement('h2')
+              goldenClientsTitle.className = 'bank__clients-title'
+              goldenClientsTitle.innerText = 'Золоті клієнти'
+              goldenClients.append(goldenClientsTitle)
+
+              const goldenClientsList = document.createElement('ul')
+              goldenClientsList.className = 'bank__clients-list'
+              goldenClients.append(goldenClientsList)
+
+              for (const client of this.getGoldenClients()) {
+                const goldenClientsItem = document.createElement('li')
+                goldenClientsItem.className = 'bank__clients-item'
+                goldenClientsList.append(goldenClientsItem)
+
+                const goldenClientsText = document.createElement('span')
+                goldenClientsText.className = 'bank__clients-name'
+                goldenClientsText.innerText =
+                  client.name + ' ' + client.surname + ' ' + 'id: ' + client.id
+                goldenClientsItem.append(goldenClientsText)
+              }
+
+              const totalBankMoney = document.createElement('span')
+              totalBankMoney.className = 'bank__total-money'
+              totalBankMoney.innerText =
+                'Баланс банку: ' + this.getTotalBankMoney()
+              bankInfo.append(totalBankMoney)
+              if (containerSelector)
+                document.querySelector(containerSelector).append(bankInfo)
+            }
+          }
+
+          const bank = new Bank([
+            regularClient1,
+            regularClient2,
+            goldenClient1,
+            goldenClient2,
+          ])
+          bank.render('.bank')
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
