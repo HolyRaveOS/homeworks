@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task8</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 8</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №22 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task8
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          function getRandNum(min, max) {
+            return min + Math.floor(Math.random() * max)
+          }
+
+          function addChecker(min, max) {
+            const firsNum = getRandNum(min, max)
+            const secondNum = getRandNum(min, max)
+            const correctAnswer = firsNum + secondNum
+            const userAnswer = parseInt(prompt(`${firsNum} + ${secondNum}`))
+            return userAnswer === firsNum + secondNum ? true : correctAnswer
+          }
+
+          const beforeDate = new Date()
+          const result = addChecker(1, 100)
+          result === true
+            ? document.write('вірно' + '<br>')
+            : document.write(`Невірно, правильна відповідь: ${result}<br>`)
+          const afterDate = new Date()
+
+          const answerersTimeInSec = (afterDate - beforeDate) / 1000
+          document.write(
+            `Відповідь зайняла ${answerersTimeInSec.toFixed(2)} секунд`
+          )
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

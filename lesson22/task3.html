@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 3</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №22 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task3
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          // class SeasonChecker {
+          //   constructor(now = new Date()) {
+          //     this.now = now
+          //     this.currentMonth = this.now.getMonth() + 1
+          //   }
+          //   checkSeason() {
+          //     switch (this.currentMonth) {
+          //       case 12:
+          //       case 1:
+          //       case 2:
+          //         return 'Зима'
+          //       case 3:
+          //       case 4:
+          //       case 5:
+          //         return 'Весна'
+          //       case 6:
+          //       case 7:
+          //       case 8:
+          //         return 'Літо'
+          //       case 9:
+          //       case 10:
+          //       case 11:
+          //         return 'Осінь'
+          //     }
+          //   }
+          //   toString() {
+          //     return `На дворі ${this.checkSeason()}`
+          //   }
+          // }
+
+          // const seasonChecker = new SeasonChecker()
+          // document.write(seasonChecker)
+
+          function getCurrentMonth() {
+            const now = new Date()
+            const currentMonth = now.getMonth()
+            return currentMonth + 1
+          }
+
+          function checkSeason() {
+            switch (getCurrentMonth()) {
+              case 12:
+              case 1:
+              case 2:
+                return 'Зима'
+              case 3:
+              case 4:
+              case 5:
+                return 'Весна'
+              case 6:
+              case 7:
+              case 8:
+                return 'Літо'
+              case 9:
+              case 10:
+              case 11:
+                return 'Осінь'
+            }
+          }
+
+          document.write(`На дворі ${checkSeason()}`)
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

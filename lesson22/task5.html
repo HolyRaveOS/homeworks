@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task5</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 5</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №22 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task5
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="year-check"></div>
+        <script>
+          class YearsChecker {
+            checkAge(e) {
+              const now = new Date()
+              const birthDate = new Date(e.target.value)
+              const currentAge = Math.floor(
+                (now - birthDate) / (365 * 24 * 60 * 60 * 1000)
+              )
+              !isNaN(currentAge)
+                ? (this.result.innerText = 'Вам ' + currentAge + ' років')
+                : (this.result.innerText = '')
+            }
+
+            render(containerSelector) {
+              const label = document.createElement('label')
+              label.className = 'year-check__label'
+              label.innerText = 'Введіть дату народження'
+
+              const input = document.createElement('input')
+              input.className = 'year-check__input'
+              input.setAttribute('placeholder', 'рррр.мм.дд')
+              input.oninput = this.checkAge.bind(this)
+              label.append(input)
+
+              const result = document.createElement('p')
+              result.className = 'year-check__text'
+              this.result = result
+              if (containerSelector)
+                document.querySelector(containerSelector).append(label)
+              document.querySelector(containerSelector).append(result)
+            }
+          }
+
+          const yearsChecker = new YearsChecker()
+          yearsChecker.render('.year-check')
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

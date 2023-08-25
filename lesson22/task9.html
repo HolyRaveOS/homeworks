@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task9</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 9</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №22 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task9
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="exp-date"></div>
+
+        <script>
+          class ExpChecker {
+            getExpDurationInputValue(e) {
+              this.value = e.target.value
+            }
+
+            checkAge(e) {
+              const now = new Date()
+              const expDate = new Date(e.target.value)
+              const expDays = Math.floor((now - expDate) / 1000 / 60 / 60 / 24)
+              this.value >= expDays
+                ? (this.result.innerText = 'Товар придатний')
+                : (this.result.innerText = 'Товар непридатний')
+            }
+
+            render(containerSelector) {
+              const label1 = document.createElement('label')
+              label1.className = 'exp-date__label'
+              label1.style.display = 'block'
+              label1.innerText = 'Введіть дату виробництва'
+
+              const label2 = document.createElement('label')
+              label2.className = 'exp-date__label'
+              label2.innerText = 'Введіть кількість днів придатності'
+
+              const expDateInput = document.createElement('input')
+              expDateInput.className = 'exp-date__input'
+              expDateInput.setAttribute('placeholder', 'рррр.мм.дд')
+              expDateInput.oninput = this.checkAge.bind(this)
+              label1.append(expDateInput)
+
+              const expDurationInput = document.createElement('input')
+              expDurationInput.className = 'exp-date__input'
+              expDurationInput.setAttribute('placeholder', '0')
+              expDurationInput.oninput =
+                this.getExpDurationInputValue.bind(this)
+              label2.append(expDurationInput)
+
+              const result = document.createElement('p')
+              result.className = 'exp-date__text'
+              this.result = result
+              if (containerSelector)
+                document.querySelector(containerSelector).append(label2)
+              document.querySelector(containerSelector).append(label1)
+              document.querySelector(containerSelector).append(result)
+            }
+          }
+
+          const expChecker = new ExpChecker()
+          expChecker.render('.exp-date')
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

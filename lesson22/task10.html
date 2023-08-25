@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task10</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 9</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №22 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task9
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          const arrForBubble = []
+          const arrForInsert = []
+
+          function swap(arr, i, j) {
+            let temp = arr[j]
+            arr[j] = arr[i]
+            arr[i] = temp
+          }
+
+          function getArr(arr) {
+            for (let i = 0; i < 1000; i++) {
+              const randNum = 1 + Math.floor(Math.random() * 800)
+              arr.push(randNum)
+            }
+          }
+
+          getArr(arrForBubble)
+          getArr(arrForInsert)
+
+          function bubbleSort(arr) {
+            do {
+              changed = false
+              for (let i = 0; i < arr.length; i++) {
+                if (arr[i + 1] > arr[i]) {
+                  swap(arr, i, i + 1)
+                  changed = true
+                }
+              }
+            } while (changed)
+          }
+
+          function insertSort(arr) {
+            let currEl, prevEl
+            for (let i = 1; i < arr.length; i++) {
+              currEl = arr[i]
+              prevEl = i - 1
+              while (prevEl >= 0 && arr[prevEl] < currEl) {
+                arr[prevEl + 1] = arr[prevEl]
+                prevEl -= 1
+              }
+              arr[prevEl + 1] = currEl
+            }
+          }
+
+          const beforeBubble = new Date()
+          bubbleSort(arrForBubble)
+          const afterBubble = new Date()
+          const bubbleTime = afterBubble - beforeBubble
+
+          const beforeInsert = new Date()
+          insertSort(arrForInsert)
+          const afterInsert = new Date()
+          const insertTime = afterInsert - beforeInsert
+
+          document.write(`
+					Сортування бульбашкою тривало ${bubbleTime} мілісекунд <br>
+					Сортування вставкою тривало ${insertTime} мілісекунд 
+					`)
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
