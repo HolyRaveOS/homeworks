@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task7</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 7</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №24 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task7
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <label>
+          <input class="color-input" type="color" />
+        </label>
+        <span class="change-count"></span>
+        <style>
+          .wrapper {
+            background-image: none;
+          }
+        </style>
+        <script>
+          const wrapper = document.querySelector('.wrapper')
+          const colorInput = document.querySelector('.color-input')
+          const span = document.querySelector('.change-count')
+
+          window.onload = function () {
+            let backgroundColor
+            colorInput.oninput = () => {
+              backgroundColor = colorInput.value
+              localStorage.setItem('backgroundColor', backgroundColor)
+              wrapper.style.backgroundColor = backgroundColor
+            }
+            colorInput.onchange = () => {
+              let colorChangeCount =
+                parseInt(sessionStorage.getItem('colorChangeCount') ?? 0) + 1
+              sessionStorage.setItem('colorChangeCount', colorChangeCount)
+              span.innerText =
+                'Кількість змін кольору фону ' +
+                sessionStorage.getItem('colorChangeCount')
+            }
+            colorInput.value = localStorage.getItem('backgroundColor')
+            wrapper.style.backgroundColor =
+              localStorage.getItem('backgroundColor')
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

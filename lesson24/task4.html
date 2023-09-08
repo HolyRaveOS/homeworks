@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task4</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 4</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №24 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task4
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Student {
+            constructor(fullName, course, faculty) {
+              this.fullName = fullName
+              this.course = course
+              this.faculty = faculty
+            }
+          }
+
+          const students = [
+            new Student('Іваненко Іван Іванович', 2, 'Факультет інформатики'),
+            new Student('Петренко Марія Василівна', 3, 'Факультет економіки'),
+            new Student('Прищенко Анна Олегівна', 4, 'Факультет філології'),
+
+            new Student(
+              'Сидоренко Олексій Петрович',
+              1,
+              'Факультет математики'
+            ),
+            new Student('Метренко Марія Василівна', 3, 'Факультет економіки'),
+
+            new Student('Грищенко Анна Олегівна', 4, 'Факультет філології'),
+            new Student(
+              'Коваленко Володимир Миколайович',
+              2,
+              'Факультет фізики'
+            ),
+            new Student('Бондаренко Олена Ігорівна', 3, 'Факультет історії'),
+            new Student('Ветренко Марія Василівна', 3, 'Факультет економіки'),
+            new Student('Мельник Андрій Вікторович', 1, 'Факультет хімії'),
+            new Student('Кузьменко Юлія Володимирівна', 4, 'Факультет права'),
+            new Student('Василенко Іван Іванович', 2, 'Факультет інформатики'),
+          ]
+
+          function getDifferentFacultiesNum(students) {
+            return new Set(students.map((el) => el.faculty)).size
+          }
+
+          function getNumOfStudentsFromEveryCourse(students) {
+            let mapCourses = new Map()
+            for (const student of students) {
+              mapCourses.set(
+                student.course,
+                (mapCourses.get(student.course) ?? 0) + 1
+              )
+            }
+            return mapCourses
+          }
+          console.log(getDifferentFacultiesNum(students))
+          console.log(getNumOfStudentsFromEveryCourse(students))
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

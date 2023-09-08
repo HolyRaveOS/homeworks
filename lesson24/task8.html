@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task8</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 8</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №24 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task7
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <style>
+          .to-do {
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+          }
+
+          .to-do__form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px;
+            border: solid 2px #000;
+          }
+
+          .to-do__form-label {
+            margin-bottom: 5px;
+          }
+
+          .to-do__form-label span {
+            display: block;
+            margin-bottom: 5px;
+          }
+
+          .to-do__form-input {
+            width: 100%;
+          }
+
+          .to-do__form-btn,
+          .to-do__item-btn {
+            padding: 5px;
+          }
+
+          .to-do__form-btn {
+            width: fit-content;
+          }
+
+          .to-do__list {
+            padding: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .to-do__item {
+            border: solid 2px #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            padding: 10px 5px;
+          }
+
+          .to-do__item-text {
+            flex-grow: 1;
+          }
+        </style>
+
+        <script>
+          class TaskManager {
+            constructor(propertyKey) {
+              this.propertyKey = propertyKey
+              this.taskList = this.readStorage()
+            }
+
+            readStorage() {
+              let list =
+                JSON.parse(localStorage.getItem(this.propertyKey)) ?? []
+              return list
+            }
+
+            addItem(title, priority) {
+              let randomId = Math.floor(Math.random() * 100000000000) //Знаю що не ідеальний варіант)))
+              const list = this.readStorage()
+              list.push({
+                id: randomId,
+                title,
+                priority,
+              })
+              this.saveList(list)
+            }
+
+            saveList(list) {
+              localStorage.setItem(this.propertyKey, JSON.stringify(list))
+            }
+
+            removeItem(id) {
+              const list = this.readStorage()
+              const newList = list.filter((el) => el.id !== id)
+              this.saveList(newList)
+            }
+          }
+
+          class ToDoList {
+            constructor(propertyKey) {
+              this.storage = new TaskManager(propertyKey)
+            }
+
+            getRandomTask() {
+              let list = this.storage.readStorage()
+              let maxValue = list.length
+              let randomIndex = Math.floor(Math.random() * maxValue)
+              return randomIndex
+            }
+
+            checkIfTaskDone() {
+              let list = this.storage.readStorage()
+              this.listItem = list[this.getRandomTask()]
+              let timeOut = setTimeout(() => {
+                if (confirm(this.listItem.title)) {
+                  this.removeTask(this.listItem.id)
+                  this.refresh()
+                }
+                console.log(list)
+                this.checkIfTaskDone()
+              }, 3000)
+              if (list.length === 0) clearTimeout(timeOut)
+            }
+
+            createLabelWithInput(title, inputType) {
+              const label = document.createElement('label')
+              label.className = 'to-do__form-label'
+
+              const labelTitle = document.createElement('span')
+              labelTitle.innerText = title
+              label.append(labelTitle)
+
+              const input = document.createElement('input')
+              input.className = 'to-do__form-input'
+              input.setAttribute('type', inputType)
+              label.append(input)
+
+              return { label, input }
+            }
+
+            addTaskManually(title, priority) {
+              const existingTask = this.storage.taskList.find(
+                (task) => task.title === title && task.priority === priority
+              )
+
+              if (!existingTask) {
+                this.storage.addItem(title, priority)
+                this.refresh()
+              }
+            }
+
+            addTask() {
+              this.storage.addItem(
+                this.titleInput.value,
+                this.priorityInput.value
+              )
+              this.refresh()
+              this.checkIfTaskDone()
+            }
+
+            renderForm() {
+              const container = document.createElement('div')
+              container.className = 'to-do__form'
+              let { label: titleLabel, input: titleInput } =
+                this.createLabelWithInput('Title', 'text')
+              container.append(titleLabel)
+              this.titleInput = titleInput
+
+              let { label: priorityLabel, input: priorityInput } =
+                this.createLabelWithInput('Priority', 'number')
+              container.append(priorityLabel)
+              this.priorityInput = priorityInput
+
+              const btn = document.createElement('button')
+              btn.className = 'to-do__form-btn'
+              btn.innerText = 'Add task'
+              btn.onclick = () => this.addTask()
+
+              container.append(btn)
+
+              return container
+            }
+
+            removeTask(id) {
+              this.storage.removeItem(id)
+              this.refresh()
+            }
+
+            renderListItem({ id, title, priority }) {
+              const container = document.createElement('li')
+              container.className = 'to-do__item'
+
+              const itemTitle = document.createElement('span')
+              itemTitle.className = 'to-do__item-text'
+              itemTitle.innerText = title
+              container.append(itemTitle)
+
+              const itemPriority = document.createElement('span')
+              itemPriority.className = 'to-do__item-priority'
+              itemPriority.innerText = priority
+              container.append(itemPriority)
+
+              const itemBtn = document.createElement('button')
+              itemBtn.className = 'to-do__item-btn'
+              itemBtn.innerText = 'Delete'
+              itemBtn.onclick = () => this.removeTask(id)
+              container.append(itemBtn)
+              return container
+            }
+
+            refresh() {
+              this.listContainer.remove()
+              this.listContainer = this.renderList(this.storage.readStorage())
+              this.managerContainer.append(this.listContainer)
+            }
+
+            renderList(listItem) {
+              const container = document.createElement('ul')
+              container.className = 'to-do__list'
+
+              for (const item of listItem) {
+                const listItem = this.renderListItem(item)
+                container.append(listItem)
+              }
+              return container
+            }
+
+            render(containerSelector) {
+              const container = document.querySelector(containerSelector)
+              container.append(this.renderForm())
+              this.listContainer = this.renderList(this.storage.readStorage())
+              container.append(this.listContainer)
+              this.managerContainer = container
+            }
+          }
+
+          window.onload = function () {
+            let toDoList = new ToDoList('tasks')
+            toDoList.render('.to-do')
+            toDoList.addTaskManually(
+              'Перевірити і відправити електронну пошту клієнту',
+              3
+            )
+            toDoList.addTaskManually(
+              'Підготувати презентацію для наступної зустрічі',
+              1
+            )
+            toDoList.addTaskManually('Придбати продукти для обіду.', 6)
+            toDoList.addTaskManually('Переглянути нову лекцію з курсу.', 4)
+            toDoList.addTaskManually('Позбавитися зайвих речей у шафі.', 5)
+            toDoList.addTaskManually(
+              'Подзвонити другу та вітати з днем народження.',
+              2
+            )
+            toDoList.checkIfTaskDone()
+          }
+        </script>
+        <div class="to-do"></div>
+      </div>
+    </div>
+  </body>
+</html>

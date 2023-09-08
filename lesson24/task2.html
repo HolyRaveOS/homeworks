@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task2</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 2</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №24 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task2
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Book {
+            constructor(title, year, author, country) {
+              this.title = title
+              this.year = year
+              this.author = author
+              this.country = country
+            }
+          }
+
+          let books = [
+            new Book(
+              'Murder on the Orient Express',
+              1934,
+              'Agatha Christie',
+              'United States'
+            ),
+            new Book(
+              'Death on the Nile',
+              1937,
+              'Agatha Christie',
+              'United States'
+            ),
+            new Book(
+              'The Murder of Roger Ackroyd',
+              1926,
+              'Agatha Christie',
+              'United States'
+            ),
+            new Book(
+              'To Kill a Mockingbird',
+              1960,
+              'Harper Lee',
+              'United States'
+            ),
+            new Book('Go Set a Watchman', 2015, 'Harper Lee', 'United States'),
+          ]
+
+          function countBooksForAuthors(books) {
+            let mapBooks = new Map()
+            for (const book of books) {
+              mapBooks.set(book.author, (mapBooks.get(book.author) ?? 0) + 1)
+            }
+            return mapBooks
+          }
+
+          console.log(countBooksForAuthors(books))
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
