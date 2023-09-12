@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task2</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 2</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №25 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task2
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <script>
+          class Shop {
+            constructor(product) {
+              this.product = product
+            }
+
+            // [Symbol.iterator]() {
+            //   this.currentIndex = 0
+            //   return this
+            // }
+            // next() {
+            //   if (this.currentIndex < this.product.length) {
+            //     return {
+            //       done: false,
+            //       value:
+            //         // this.product[this.currentIndex++]
+            //         this.product[this.currentIndex++].title +
+            //         ': ' +
+            //         (
+            //           this.product[this.currentIndex++].price *
+            //           this.product[this.currentIndex++].amount
+            //         ).toFixed(2),
+            //     }
+            //   } else return { done: true }
+            // }
+
+            *[Symbol.iterator]() {
+              for (let value = 0; value < this.product.length; value++) {
+                // yield this.product[value]
+                yield this.product[value].title +
+                  ': ' +
+                  (
+                    this.product[value].price * this.product[value].amount
+                  ).toFixed(2)
+              }
+            }
+          }
+
+          class Product {
+            constructor(title, price, amount) {
+              this.title = title
+              this.price = price
+              this.amount = amount
+            }
+          }
+
+          let shop = new Shop([
+            new Product('Laptop', 999.99, 5),
+            new Product('Smartphone', 599.99, 10),
+            new Product('Headphones', 49.99, 20),
+            new Product('Tablet', 349.99, 8),
+            new Product('Keyboard', 29.99, 15),
+          ])
+
+          for (const el of shop) {
+            // document.write(
+            //   el.title + ': ' + (el.price * el.amount).toFixed(2) + '<br>'
+            // )
+            document.write(el + '<br>')
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

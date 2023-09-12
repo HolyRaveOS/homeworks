@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <h1 class="main-title">Задача 1</h1>
+        <nav class="breadcrumbs">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="../index.html"> Головна </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link"> ДЗ №25 </a>
+            </li>
+            <li class="breadcrumbs__item">
+              <span class="breadcrumbs__link breadcrumbs__link_active">
+                Task1
+              </span>
+            </li>
+          </ul>
+        </nav>
+        <div class="phone-check"></div>
+        <style>
+          .phone-check span {
+            display: block;
+          }
+          .input {
+            margin-bottom: 10px;
+          }
+        </style>
+        <script>
+          operatorsList = {
+            Kyivstar: [
+              '+38039',
+              '+38067',
+              '+38068',
+              '+38096',
+              '+38097',
+              '+38098',
+            ],
+            Vodafone: ['+38050', '+38066', '+38095', '+38099'],
+            lifecell: ['+38063', '+38073', '+38093'],
+            'ТриМоб (Utel Україна)': ['+38091'],
+            'PEOPLEnet Україна': ['+38092'],
+            'Iнтертелеком Україна': ['+38089', '+38094'],
+          }
+
+          class PhoneNumber {
+            constructor(operatorsList) {
+              this.operatorsList = operatorsList
+            }
+
+            getInputValue() {
+              return this.input.value.toString().padStart(13, '+' + 380)
+            }
+
+            render(containerSelector) {
+              const container = document.querySelector(containerSelector)
+
+              const input = document.createElement('input')
+              input.className = 'input'
+              input.setAttribute('type', 'number')
+              input.setAttribute('placeholder', 'Введіть номер телефону')
+              this.input = input
+              input.addEventListener('input', () => {
+                this.updatePhoneNumber()
+              })
+
+              const span = document.createElement('span')
+              this.span = span
+
+              container.append(input)
+              container.append(span)
+            }
+
+            updatePhoneNumber() {
+              this.span.innerText =
+                this[Symbol.toPrimitive]('string') ?? 'Немає такого оператора'
+            }
+
+            [Symbol.toPrimitive](hint) {
+              this.phoneNum = this.getInputValue()
+              let res
+              switch (hint) {
+                case 'string':
+                  for (const key in this.operatorsList) {
+                    if (
+                      this.operatorsList[key].some((prefix) =>
+                        this.phoneNum.startsWith(prefix)
+                      )
+                    )
+                      res = key
+                  }
+
+                  if (this.phoneNum.startsWith('+380+'))
+                    res = 'Некорректний номер'
+                  break
+                case 'number':
+                  res = parseInt(this.phoneNum)
+                  break
+                default:
+                  res = 'Щось сталоьсь не так'
+              }
+              return res
+            }
+          }
+
+          let phoneNumber = new PhoneNumber(operatorsList)
+          phoneNumber.render('.phone-check')
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
